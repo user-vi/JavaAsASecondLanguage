@@ -18,11 +18,10 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '14.0.2'
-
-      - name: Move to lecture directory
-        run: cd lecture01
       - name: assemble
         run: ./gradlew assemble
+        working-directory: lecture01
       - name: check
         run: ./gradlew check
+        working-directory: lecture01
 
