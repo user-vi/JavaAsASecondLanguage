@@ -19,9 +19,10 @@ jobs:
         with:
           java-version: '14.0.2'
 
-      - name: Run a one-line script
-        run: |
-          cd lecture01
-          ./gradlew assemble
-          ./gradlew check
+      - name: Move to lecture directory
+        run: cd lecture01
+      - name: assemble
+        run: ./gradlew assemble
+      - name: check
+        run: ./gradlew check
 
