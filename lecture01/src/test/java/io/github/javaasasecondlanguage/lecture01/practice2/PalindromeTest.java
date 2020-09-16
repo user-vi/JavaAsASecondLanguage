@@ -55,7 +55,9 @@ class PalindromeTest {
 
     @Test
     void randomStingIsAPalindrome() {
-        String randomString = "Aiaia rever devil stink trap pip steels peep dog sleep time mined Kassak denim emit peels god peep sleets pip part knits lived rever Aiaia".toLowerCase();
+        String randomString = ("Aiaia rever devil stink trap pip steels peep dog sleep time mined " +
+                "Kassak denim emit peels god peep sleets pip part knits lived rever Aiaia"
+        ).toLowerCase();
         assertTrue(Palindrome.isPalindrome(randomString));
     }
 }
