@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="windows-1251">
+    <file url="file://$PROJECT_DIR$/homework01/build.gradle.kts" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/homework01/src/main/java/io/github/javaasasecondlanguage/homework01/compressor/StringCompressor.java" charset="windows-1251" />
+    <file url="PROJECT" charset="windows-1251" />
+  </component>
+</project>

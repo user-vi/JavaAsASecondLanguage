@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-09-21T16:26:35" hostname="DESKTOP-F4217H7" time="0.042">
+  <properties/>
+  <testcase name="nullIsIllegalArgument()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.014"/>
+  <testcase name="stringWithIllegalCharacters()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.002"/>
+  <testcase name="noCompressionForSingleChar()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.002"/>
+  <testcase name="maxTest500()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.012"/>
+  <testcase name="noCompressionForSimpleString()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.0"/>
+  <testcase name="emptyArrayIsAlreadyCompressed()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.001"/>
+  <testcase name="sample1()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.001"/>
+  <testcase name="sample2()" classname="io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

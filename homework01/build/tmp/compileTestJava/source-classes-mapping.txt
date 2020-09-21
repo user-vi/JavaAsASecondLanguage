@@ -1,0 +1,4 @@
+io/github/javaasasecondlanguage/homework01/compressor/StringCompressorTest.java
+ io.github.javaasasecondlanguage.homework01.compressor.StringCompressorTest
+io/github/javaasasecondlanguage/homework01/mergeintervals/MergeIntervalsTest.java
+ io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest

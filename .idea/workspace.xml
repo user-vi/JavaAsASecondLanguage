@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:lecture01" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ce929ddb-08bd-47d5-8e53-140f6830363b" name="Default Changelist" comment="HW1: IntervalsMerge, StringCompressor">
+      <change beforePath="$PROJECT_DIR$/homework01/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/homework01/build.gradle.kts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/homework01">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/lecture01">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/homework01">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="homework01" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="homework01" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="homework01" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="homework01" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="homework01" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1hm19ywpsjB3i4TawAv20plSwHq" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/homework01/build.gradle.kts" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RunManager" selected="Gradle.homework01 [test]">
+    <configuration name="MergeIntervalsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/homework01" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MergeIntervalsTest.duplicateIntervals1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/homework01" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest.duplicateIntervals1&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MergeIntervalsTest.duplicateIntervals2" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/homework01" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest.duplicateIntervals2&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="homework01 [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/homework01" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="check" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="homework01 [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/homework01" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.homework01 [test]" />
+        <item itemvalue="Gradle.homework01 [check]" />
+        <item itemvalue="Gradle.MergeIntervalsTest.duplicateIntervals1" />
+        <item itemvalue="Gradle.MergeIntervalsTest" />
+        <item itemvalue="Gradle.MergeIntervalsTest.duplicateIntervals2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce929ddb-08bd-47d5-8e53-140f6830363b" name="Default Changelist" comment="" />
+      <created>1600601307143</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600601307143</updated>
+    </task>
+    <task id="LOCAL-00001" summary="implementation stringCompressor">
+      <created>1600608583998</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600608583998</updated>
+    </task>
+    <task id="LOCAL-00002" summary="HW1: IntervalsMerge, StringCompressor">
+      <created>1600705715656</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600705715656</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="implementation stringCompressor" />
+    <MESSAGE value="HW1: IntervalsMerge, StringCompressor" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW1: IntervalsMerge, StringCompressor" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="821" y="122" key="#xdebugger.evaluate" timestamp="1600703675434">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="821" y="122" key="#xdebugger.evaluate/0.0.1392.823@0.0.1392.823" timestamp="1600703675434" />
+    <state x="477" y="166" key="FileChooserDialogImpl" timestamp="1600601447607">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="477" y="166" key="FileChooserDialogImpl/0.0.1392.823@0.0.1392.823" timestamp="1600601447607" />
+    <state width="307" height="590" key="Git.Branch.Popup" timestamp="1600608791764">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="307" height="590" key="Git.Branch.Popup/0.0.1392.823@0.0.1392.823" timestamp="1600608791764" />
+    <state x="403" y="278" key="Github.CreatePullRequestDialog" timestamp="1600705765291">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="403" y="278" key="Github.CreatePullRequestDialog/0.0.1392.823@0.0.1392.823" timestamp="1600705765290" />
+    <state width="1349" height="285" key="GridCell.Tab.0.bottom" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.0.bottom/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state width="1349" height="285" key="GridCell.Tab.0.center" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.0.center/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state width="1349" height="285" key="GridCell.Tab.0.left" timestamp="1600706248066">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.0.left/0.0.1392.823@0.0.1392.823" timestamp="1600706248066" />
+    <state width="1349" height="285" key="GridCell.Tab.0.right" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.0.right/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state width="1349" height="285" key="GridCell.Tab.1.bottom" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.1.bottom/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state width="1349" height="285" key="GridCell.Tab.1.center" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.1.center/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state width="1349" height="285" key="GridCell.Tab.1.left" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.1.left/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state width="1349" height="285" key="GridCell.Tab.1.right" timestamp="1600706248067">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state width="1349" height="285" key="GridCell.Tab.1.right/0.0.1392.823@0.0.1392.823" timestamp="1600706248067" />
+    <state x="339" y="114" key="RollbackChangesDialog" timestamp="1600701961759">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="339" y="114" key="RollbackChangesDialog/0.0.1392.823@0.0.1392.823" timestamp="1600701961759" />
+    <state x="205" y="0" key="SettingsEditor" timestamp="1600606679865">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="205" y="0" key="SettingsEditor/0.0.1392.823@0.0.1392.823" timestamp="1600606679865" />
+    <state x="289" y="144" key="Vcs.Push.Dialog.v2" timestamp="1600705737420">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="289" y="144" key="Vcs.Push.Dialog.v2/0.0.1392.823@0.0.1392.823" timestamp="1600705737420" />
+    <state x="514" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600609170094">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="514" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1392.823@0.0.1392.823" timestamp="1600609170094" />
+    <state x="427" y="169" key="extract.method.dialog" timestamp="1600703591138">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="427" y="169" key="extract.method.dialog/0.0.1392.823@0.0.1392.823" timestamp="1600703591138" />
+    <state x="293" y="240" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1600609234799">
+      <screen x="0" y="0" width="1392" height="823" />
+    </state>
+    <state x="293" y="240" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1392.823@0.0.1392.823" timestamp="1600609234799" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/main/java/io/github/javaasasecondlanguage/homework01/compressor/StringCompressor.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/main/java/io/github/javaasasecondlanguage/homework01/compressor/StringCompressor.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/main/java/io/github/javaasasecondlanguage/homework01/compressor/StringCompressor.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/main/java/io/github/javaasasecondlanguage/homework01/mergeintervals/IntervalsMerger.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/main/java/io/github/javaasasecondlanguage/homework01/mergeintervals/IntervalsMerger.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/test/java/io/github/javaasasecondlanguage/homework01/mergeintervals/MergeIntervalsTest.java</url>
+          <line>236</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/homework01/src/test/java/io/github/javaasasecondlanguage/homework01/mergeintervals/MergeIntervalsTest.java</url>
+          <line>221</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

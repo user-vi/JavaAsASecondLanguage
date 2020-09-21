@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2020-09-21T16:26:35" hostname="DESKTOP-F4217H7" time="0.027">
+  <properties/>
+  <testcase name="duplicateIntervals1()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="duplicateIntervals2()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="nullIsIllegalArgument()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="singleIntervalIsSorted1()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <testcase name="singleIntervalIsSorted2()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample1()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample2()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample3()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample4()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <testcase name="sample5()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <testcase name="sample6()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample7()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample8()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample9()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <testcase name="sample10()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <testcase name="sample11()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample12()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.001"/>
+  <testcase name="sample13()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <testcase name="emptyIntervalListIsAlreadyMerged()" classname="io.github.javaasasecondlanguage.homework01.mergeintervals.MergeIntervalsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
