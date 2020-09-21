@@ -5,7 +5,7 @@ package io.github.javaasasecondlanguage.homework01.compressor;
 public class StringCompressor {
     /**
      * Given an array of characters, compress it using the following algorithm:
-     *
+     * <p>
      * Begin with an empty string s.
      * For each group of consecutive repeating characters in chars:
      * If the group's length is 1, append the character to s.
@@ -44,10 +44,10 @@ public class StringCompressor {
 
         //234 sdf -> Illegal argument
         //Character.isWhitespace(str.toString().charAt(i))
-        for(int i = 0; i < str.length; i++){
+        for (int i = 0; i < str.length; i++) {
             char[] temp = str;
             char temp2 = str[i];
-            if(Character.isWhitespace(str[i])) {
+            if (Character.isWhitespace(str[i])) {
                 throw new IllegalArgumentException();
             }
         }
@@ -55,7 +55,7 @@ public class StringCompressor {
         return stringCompressor(str);
     }
 
-    char[] stringCompressor (char[] str) {
+    char[] stringCompressor(char[] str) {
         String temp = "";
         int i;
         int j = 1;
@@ -67,7 +67,7 @@ public class StringCompressor {
         //aabbccc
         for (i = 1; i < str.length; i++) {
 
-            if (i == 1 ) {
+            if (i == 1) {
                 temp = temp + str[i - 1];
             }
 
@@ -79,7 +79,7 @@ public class StringCompressor {
                 j++;
             }
             if (i < str.length - 1) {
-                if (str[i] != str[i + 1] ) {
+                if (str[i] != str[i + 1]) {
                     if (j > 1) {
                         temp = temp + String.valueOf(j);
                         j = 1;
@@ -95,7 +95,6 @@ public class StringCompressor {
         }
         return temp.toCharArray();
     }
-
 
 
 }
