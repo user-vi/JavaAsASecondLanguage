@@ -415,13 +415,12 @@ class Message {
     }
 }
 ```
-
-Usage
+---
+## Methods
 ```java
 var message = new Message("my content");
 message.getContent();
 
-assertTrue(message.getContent().equals("my content"))); // <-- OK
 assertEquals("my content", message.getContent())); // <-- OK
 ```
 
@@ -473,8 +472,9 @@ class Utils {
     }
 }
 ```
+---
+## `static` keyword
 
-Usage
 ```java
 int max = Utils.getMax(new int[] {1, 2, 3});
 System.out.println(Utils.DEFAULT_MAX);
@@ -543,9 +543,9 @@ class Utils {
 --- 
 ## final method (forbidden override)
 ```java
-class Message {
+class Message { 
     public final String getContent() { 
-       return content; 
+        return content;    
     } 
 }
 ```
@@ -701,7 +701,7 @@ QuantTree
 1. Practice 2
 
 ---
-## `Object` class #2
+## Methods inside `Object`
 ```java
 class Object {
     public String toString() {/**/}
@@ -846,5 +846,5 @@ IterableTree
 1. Compare objects using equals(), primitives with ==
 1. Keep equals(), hashCode() and compareTo() consistent
 1. Use single public class within file where possible
-1. Composition over inheritance
 1. null is dangerous, checking for null is important
+1. When making OOP - Keep it simple
