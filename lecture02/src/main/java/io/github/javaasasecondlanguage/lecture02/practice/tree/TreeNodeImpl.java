@@ -26,5 +26,4 @@ public class TreeNodeImpl<E> implements TreeNode<E> {
     public List<TreeNode<E>> getChildren() {
         return children;
     }
-
 }
