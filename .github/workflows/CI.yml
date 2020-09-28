@@ -21,8 +21,10 @@ jobs:
           java-version: '14.0.2'
       - name: assemble
         run: ./gradlew assemble
-        working-directory: ./lecture02
-      - name: check
-        run: ./gradlew check
-        working-directory: ./lecture02
+        working-directory: ./homework02
+      - name: check DI module
+        run: ./gradlew :di:check
+      - name: check Webserver module
+        run: ./gradlew :webserver:check
+        working-directory: ./homework02
 
