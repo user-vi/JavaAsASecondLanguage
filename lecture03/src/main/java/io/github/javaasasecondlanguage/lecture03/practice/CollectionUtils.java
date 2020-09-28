@@ -2,7 +2,7 @@ package io.github.javaasasecondlanguage.lecture03.practice;
 
 import java.util.Set;
 
-public class Generics {
+public class CollectionUtils {
     /**
      * Find common elements for specified sets. Null elements can not be common
      * Change signature
