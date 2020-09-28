@@ -4,20 +4,22 @@
 
 ---
 # Agenda
-- Java Collections
+- Exceptions
+- Collections and Generics
+- HashMap
+- Stream API
 
-# Collections
+# Collections and Generics
 
 ## List
 
-# Generics
+## Generic list
 
 ## Generic terms
-//TODO terms
 
 ## Generic are compile-time
 
-## Generics vs Templates
+## Generics vs C++ Templates
 
 ## Generics are invariant, arrays are covariant
 
@@ -31,9 +33,6 @@ That means that your code cannot know the Class of generic from code
 Why?  
 [For backward compatibility with programs written for Java<5](https://docs.oracle.com/javase/specs/jls/se14/html/jls-4.html#jls-4.7)
 
-## Generics are compile-time feature
-
-## Generics vs C++ templates
 
 ## Lists vs Arrays
 Arrays are covariant
@@ -44,8 +43,8 @@ is neither a subtype nor a supertype of List<Type2>
 
 ## Map
 
-## Streams
+## HashMap
 
-## Exceptions
+## Streams
 
 ## TIL
