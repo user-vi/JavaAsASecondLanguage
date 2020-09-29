@@ -10,7 +10,7 @@ public class CollectionUtils {
      * @param s2 set
      * @return common elements for given sets
      */
-    public static Set common(Set s1, Set s2) { //change method signature to make it type safe
+    public static Set intersect(Set s1, Set s2) { //change method signature to make it type safe
         throw new RuntimeException("Not implemented");
     }
 }
