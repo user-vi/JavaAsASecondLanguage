@@ -18,7 +18,7 @@
 ---
 # Java collections
 Java collections zoo
-<img src="Collections.png" alt="collections"/>
+<img src="img/Collections.png" alt="collections"/>
 ---
 
 ## List
