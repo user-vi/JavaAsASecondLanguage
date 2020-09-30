@@ -2,6 +2,11 @@
 ### Lecture 03
 ### Collections, Generics, Exceptions
 
+
+--- 
+# Homework 2. Q/A
+
+
 ---
 # Collections
 - **[Collections]**
@@ -165,6 +170,7 @@ See: GenericVsRawType
 Generics only hold on compile-time (non reified)  
 That means that your code cannot know the Class of generic from code  
 Why?  
+@See ImpossibleWithGenerics
 
 ---
 
@@ -216,7 +222,10 @@ Generics are only compile time sugar
 
 ---
 ## Bounded generics
-TODO
+What if I want to work with List<Integer> as with List<Number>  
+Or you do not care about type
+
+@See BoundedGenerics
 
 ---
 # Practice 2. Implement set intersection
@@ -287,7 +296,47 @@ a.hashcode() is the same during object lifetime
 - **[Stream API]**
 
 ---
-## Streams
+## Loops good
+
+```java
+ var filtered = new ArrayList<>();
+ for(Person p : people) {
+     if(p.age() < 19) {
+         filtered.add(p);
+     }
+ }
+ return filtered;
+```
+
+---
+## Streams good
+
+```java
+ return people
+     .filter( p -> p.age() < 19)
+     .collect(toList());
+```
+
+
+## Operations
+
+1. Intermediate
+2. Terminal
+    - allMatch() operation
+    - anyMatch() operation
+    - noneMatch() operation
+    - collect() operation
+    - count() operation
+    - forEach() operation
+    - min() operation
+    - max() operation
+    - reduce() operation
+3. Debug*
+    - peek()
+
+
+---
+## Tell me more
 
 Let's pretend Java is ~~Haskell~~ a functional language.
 
@@ -300,6 +349,8 @@ Stream is an abstraction. Not a data structure.
 ## TIL
 - List is a resizeable wrapper for array
 - LinkedList ~~sucks~~ is a double-linked list
-- HashMap is fast for search
+- HashMap is fast for retrieval
+- you must implement consistent equals()/hashCode()/compareTo() for keys of HashMap
 - Generics allow you to have move type safety in compile time
 - Generics are only compile-time feature
+- Use bounded generics to make your API mor flexible
