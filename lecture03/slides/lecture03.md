@@ -162,7 +162,7 @@ Generics give developer more type safety in compile time
 See: GenericVsRawType
 
 ---
-# How to create generic class/method?
+## How to create generic class/method?
 See collections framework
 
 ---
@@ -171,7 +171,7 @@ See collections framework
 
 ---
 
-## Generic are compile-time
+## Generics are compile-time
 Generics only hold on compile-time (non reified)  
 That means that your code cannot know the Class of generic from code  
 Why?  
@@ -188,6 +188,9 @@ Why?
 | List<E> | Generic type |
 | E | Formal type parameter |
 | List<?> | Unbounded wildcard type |
+
+---
+## Terms...
 | List | Raw type |
 | <E extends Number> | Bounded type parameter |
 | static <E> List<E> asList(E[] a)| Recursive type bound |
@@ -199,6 +202,8 @@ Why?
 Generics were added to Java to ensure type safety and to ensure that generics wouldn't cause overhead at runtime.  
 The compiler applies a process called type erasure on generics at compile time.  
   
+---
+## Type Erasure...
 Type erasure removes all type parameters and replaces it with their bounds or with Object if the type parameter is unbounded.  
 Thus the bytecode after compilation contains only normal classes, interfaces and methods thus ensuring that no new types are produced. Proper casting is applied as well to the Object type at compile time.
 [For backward compatibility with programs written for Java<5](https://docs.oracle.com/javase/specs/jls/se14/html/jls-4.html#jls-4.7)
@@ -267,15 +272,12 @@ TreeMap
 <img src="img/hashmap.png" alt="exception" style="width: 750px;"/>
 
 ---
-## General collision resolution
-- LinkedList
-- Tree
-- ...
+## Quiz - how can you resolve collisions
 
 ---
 ## Quiz
-How does HashMap make a tree of items if they are not comparable?
-http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/a006fa0a9e8f/src/share/classes/java/util/HashMap.java#l1876
+[How](http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/a006fa0a9e8f/src/share/classes/java/util/HashMap.java#l1876
+) does HashMap make a tree of items if they are not comparable?
 
 ---
 ### equals/hashCode/compareTo contract
