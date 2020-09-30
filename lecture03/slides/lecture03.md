@@ -287,9 +287,19 @@ a.hashcode() is the same during object lifetime
 - **[Stream API]**
 
 ---
+## Streams
+
+Let's pretend Java is ~~Haskell~~ a functional language.
+
+Stream is an abstraction. Not a data structure.
+
+---
+## Practice 4. Streams & LocationService
+
+---
 ## TIL
 - List is a resizeable wrapper for array
-- LinkedList is a double linked list
+- LinkedList ~~sucks~~ is a double-linked list
 - HashMap is fast for search
 - Generics allow you to have move type safety in compile time
 - Generics are only compile-time feature
