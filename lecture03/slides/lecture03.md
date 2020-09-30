@@ -152,7 +152,7 @@ Linking
 ## Generic list
 ```java
 var intList = new ArrayList<Integer>();
-List<String> strList = new ArrayList<>();
+List\<String\> strList = new ArrayList<>();
 ```
 You can not add String to this array anymore
 
