@@ -145,8 +145,7 @@ Linking
 - Collections
 - List
 - **[Generics]**
-- Set
-- Map
+- Map and Set
 - Stream API
 
 ---
@@ -155,10 +154,20 @@ Linking
 var intList = new ArrayList<Integer>();
 List<String> strList = new ArrayList<>();
 ```
+You can not add String to this array anymore
+
 ---
 ## Generics 
 Generics give developer more type safety in compile time   
 See: GenericVsRawType
+
+---
+# How to create generic class/method?
+See collections framework
+
+---
+# Practice 1. Implement stack
+
 
 ---
 
@@ -184,9 +193,6 @@ Why?
 | static <E> List<E> asList(E[] a)| Recursive type bound |
 | String.class| Bounded wildcard type |
 | Item | Generic method |
-
----
-#Practice 1. Implement stack
 
 ---
 ## Type Erasure
@@ -354,3 +360,4 @@ Stream is an abstraction. Not a data structure.
 - Generics allow you to have move type safety in compile time
 - Generics are only compile-time feature
 - Use bounded generics to make your API mor flexible
+- Streams are cool
