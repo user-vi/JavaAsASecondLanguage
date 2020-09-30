@@ -1,44 +1,29 @@
 package io.github.javaasasecondlanguage.lecture03.practice1;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EmptyStackException;
-import java.util.List;
 
 /**
  * Classic LIFO stack
  * @param <E> the type of elements in stack
  */
 public class Stack<E> {
-    private List<E> list = new ArrayList<>();
-
-    public Stack() {
-    }
-
     public void push(E e) {
-        list.add(e);
+        throw new RuntimeException("Not implemented");
     }
 
     public E pop() {
-        if (list.isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return list.remove(list.size() - 1);
+        throw new RuntimeException("Not implemented");
     }
 
     public boolean isEmpty() {
-        return list.isEmpty();
+        throw new RuntimeException("Not implemented");
     }
 
-    public void popAll(Collection<? super E> dst) {
-        while (!isEmpty())
-            dst.add(pop());
+    public void popAll(Collection dst) {//make it type safe
+        throw new RuntimeException("Not implemented");
     }
 
-
-    public void pushAll(Iterable<? extends E> src) {
-        for (E e : src)
-            push(e);
+    public void pushAll(Iterable src) {//make it type safe
+        throw new RuntimeException("Not implemented");
     }
-
 }

@@ -75,7 +75,6 @@ Not enough capacity. Need (auto)resize.
 
 ---
 
-
 ## ArrayList. Complexity
 
 |  contains  | add   | get   |  set  | remove | 
