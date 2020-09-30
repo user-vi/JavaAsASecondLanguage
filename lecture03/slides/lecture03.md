@@ -3,26 +3,24 @@
 ### Collections, Generics, Exceptions
 
 ---
-# Agenda
-- Collections
-- ArrayList
+# Collections
+- **[Collections]**
+- List
 - Generics
-- Set
-- Map
+- Map and Set
 - Stream API
 
 ---
-# Collections
+# Java collections
 Java collections zoo
 <img src="Collections.png" alt="collections"/>
 ---
 
-
-# Agenda
+## List
 - Collections
-- **[ArrayList]**
+- **[List]**
 - Generics
-- HashMap
+- Map and Set
 - Stream API
 ---
 
@@ -72,8 +70,8 @@ Not enough capacity. Need (auto)resize.
 <img src="img/array10.png" alt="exception" style="width: 750px;"/>
 
 ---
-### Quiz
-#### What is the difference between capacity and size in `ArrayList`?
+## Quiz
+### What is the difference between capacity and size in `ArrayList`?
 
 ---
 
@@ -86,6 +84,62 @@ Not enough capacity. Need (auto)resize.
 
 * Amortized complexity. How to implement List that has O(1) on add()?
 ---
+
+## LinkedList
+- Doubly-linked list implementation of the **List** and **Deque**
+interfaces.
+
+---
+## LinkedList internals #1
+```java
+var list = new LinkedList<>();
+```
+
+<img src="img/linkednew.png" alt="exception" style="width: 400px;"/>
+
+
+---
+## LinkedList internals #2
+```java
+list.add("0");
+```
+
+Allocation
+
+<img src="img/linked0.png" alt="exception" style="width: 400px;"/>
+
+Linking
+
+<img src="img/linked0linked.png" alt="exception" style="width: 400px;"/>
+
+
+---
+## LinkedList internals #3
+```java
+list.add("1");
+```
+
+Allocation
+
+<img src="img/linked1.png" alt="exception" style="width: 400px;"/>
+
+Linking
+
+<img src="img/linked1linked.png" alt="exception" style="width: 400px;"/>
+
+
+---
+## LinkedList. Complexity
+
+|  contains  | add   | get   |  set  | remove | 
+|:----------:|:-----:|:-----:|:-----:|:------:|
+| O(n)       | O(1)  |  O(n) |  O(n) | O(n)   |
+
+---
+#Practice 1. Implement stack
+
+---
+
 ## Generics
 - Collections
 - List
@@ -94,22 +148,40 @@ Not enough capacity. Need (auto)resize.
 - Map
 - Stream API
 
+---
 ## Generic list
 ```java
 var intList = new List<Integer>();
 List<String> strList = new ArrayList<>();
 ```
 ---
-
-## Generic terms
+## Generics 
+Generics give developer more type safety in compile time   
+See: GenericVsRawType
 
 ---
-
 
 ## Generic are compile-time
 Generics only hold on compile-time (non reified)  
 That means that your code cannot know the Class of generic from code  
 Why?  
+
+---
+
+## Terms
+
+|  Term  | Example   |
+|:----------:|:-----:|
+| List<String>      | Parameterized type |
+| String | Actual type parameter |
+| List<E> | Generic type |
+| E | Formal type parameter |
+| List<?> | Unbounded wildcard type |
+| List | Raw type |
+| <E extends Number> | Bounded type parameter |
+| static <E> List<E> asList(E[] a)| Recursive type bound |
+| String.class| Bounded wildcard type |
+| Item | Generic method |
 
 ---
 ## Type Erasure
@@ -118,12 +190,10 @@ The compiler applies a process called type erasure on generics at compile time.
 
 Type erasure removes all type parameters and replaces it with their bounds or with Object if the type parameter is unbounded. Thus the bytecode after compilation contains only normal classes, interfaces and methods thus ensuring that no new types are produced. Proper casting is applied as well to the Object type at compile time.
 [For backward compatibility with programs written for Java<5](https://docs.oracle.com/javase/specs/jls/se14/html/jls-4.html#jls-4.7)
----
-## Generics vs C++ Templates
 
 ---
 ## Generics are invariant, arrays are covariant
-
+@See ArrayVsList
 
 ---
 ## Generics are compile-time, arrays are reified
@@ -139,18 +209,87 @@ Generics are invariant: for any two distinct types Type1 and Type2, List<Type1>
 is neither a subtype nor a supertype of List<Type2>
 
 ---
-# Agenda
+## Generics vs C++ Templates
+Templates are much more powerful  
+Generics are only compile time sugar
+
+
+---
+## Bounded generics
+TODO
+
+---
+# Practice 2. Implement set intersection
+
+---
+# Map/Set
 - Collections
 - List
 - Generics
-- *[Map and Set]
+- **[Map and Set]**
 - Stream API
----
-
-## HashMap
 
 ---
-## Streams
+### Complexity
+HashMap
+
+|  containsKey  | get   | put   | remove | 
+|:----------:|:-----:|:-----:|:------:|
+| O(1)       | O(1)  |  O(1) | O(1)  |
+
+
+TreeMap
+
+|  containsKey  | get   | put   | remove |
+|:----------:|:-----:|:-----:|:------:|
+| O(log(n))       | O(log(n))  |  O(log(n)) | O(log(n))  |
+
+[Read more](http://infotechgems.blogspot.ru/2011/11/java-collections-performance-time.html)
+
+
+---
+## HashMap. Internals 
+<img src="img/hashmap.png" alt="exception" style="width: 750px;"/>
+
+---
+## General collision resolution
+- LinkedList
+- Tree
+- ...
+
+---
+## Quiz
+How does HashMap make a tree of items if they are not comparable?
+http://hg.openjdk.java.net/jdk8u/jdk8u/jdk/file/a006fa0a9e8f/src/share/classes/java/util/HashMap.java#l1876
+
+---
+### equals/hashCode/compareTo contract
+**To use HashMap - you must have consistent equals/hashCode and compareTo for keys**  
+For objects **a** and **b**:
+```java
+a.equals(b) => a.hashCode() == b.hashCode()
+
+if a.hashCode() == b.hashCode() 
+          a may be not equal b
+          
+a.hashcode() is the same during object lifetime
+```
+
+---
+## Practice 3. Implement LRU Cache
+
+---
+## Stream API
+- Collections
+- List
+- Generics
+- Map and Set
+- **[Stream API]**
 
 ---
 ## TIL
+- List is a resizeable wrapper for array
+- LinkedList is a double linked list
+- HashMap is fast for search
+- Generics allow you to have move type safety in compile time
+- Generics are only compile-time feature

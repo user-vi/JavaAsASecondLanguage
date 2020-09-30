@@ -16,8 +16,8 @@ public class ArrayVsList {
 
     @Test
     void genericsAreInvariant() {
-        /*        
-        List<Object> list = new ArrayList<Integer>(); // Incompatible types
+        /*
+        ArrayList<Object> list = new ArrayList<Integer>(); // Incompatible types
         list.add("I am not an Integer");
         */
     }

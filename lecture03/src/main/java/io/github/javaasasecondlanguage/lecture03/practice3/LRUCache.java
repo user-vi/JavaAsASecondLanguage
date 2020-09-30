@@ -1,4 +1,4 @@
-package io.github.javaasasecondlanguage.lecture03.practice1;
+package io.github.javaasasecondlanguage.lecture03.practice3;
 
 /**
  * Cache that only stores 'capacity' values that were put last

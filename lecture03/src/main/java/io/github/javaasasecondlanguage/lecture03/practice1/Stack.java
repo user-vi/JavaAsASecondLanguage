@@ -1,4 +1,4 @@
-package io.github.javaasasecondlanguage.lecture03.practice3;
+package io.github.javaasasecondlanguage.lecture03.practice1;
 
 import java.util.Collection;
 

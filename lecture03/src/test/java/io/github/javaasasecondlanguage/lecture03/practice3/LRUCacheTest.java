@@ -1,6 +1,5 @@
-package io.github.javaasasecondlanguage.lecture03.practice1;
+package io.github.javaasasecondlanguage.lecture03.practice3;
 
-import io.github.javaasasecondlanguage.lecture03.practice1.LRUCache;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
