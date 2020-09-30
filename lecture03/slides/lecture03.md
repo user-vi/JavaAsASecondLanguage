@@ -165,6 +165,7 @@ See: GenericVsRawType
 Generics only hold on compile-time (non reified)  
 That means that your code cannot know the Class of generic from code  
 Why?  
+@See ImpossibleWithGenerics
 
 ---
 
@@ -216,7 +217,10 @@ Generics are only compile time sugar
 
 ---
 ## Bounded generics
-TODO
+What if I want to work with List<Integer> as with List<Number>  
+Or you do not care about type
+
+@See BoundedGenerics
 
 ---
 # Practice 2. Implement set intersection
@@ -290,6 +294,8 @@ a.hashcode() is the same during object lifetime
 ## TIL
 - List is a resizeable wrapper for array
 - LinkedList is a double linked list
-- HashMap is fast for search
+- HashMap is fast for retrevial
+- you must implement consistent equals()/hashCode()/compareTo() for keys of HashMap
 - Generics allow you to have move type safety in compile time
 - Generics are only compile-time feature
+- Use bounded generics to make your API mor flexible
