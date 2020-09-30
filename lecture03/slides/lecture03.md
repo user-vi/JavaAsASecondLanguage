@@ -1,6 +1,6 @@
 ## Java As A Second Language
 ### Lecture 03
-### Collections, Generics, Exceptions
+### Collections, Generics, Streams
 
 
 --- 
