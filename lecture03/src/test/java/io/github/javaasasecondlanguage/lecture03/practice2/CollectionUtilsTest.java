@@ -1,5 +1,6 @@
 package io.github.javaasasecondlanguage.lecture03.practice2;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -7,6 +8,7 @@ import java.util.*;
 import static java.util.Collections.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 class CollectionUtilsTest {
     @Test
     void nOfCommonElements1() {

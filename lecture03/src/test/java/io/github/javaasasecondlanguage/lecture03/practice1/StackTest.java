@@ -1,11 +1,13 @@
 package io.github.javaasasecondlanguage.lecture03.practice1;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 class StackTest {
     @Test
     void singlePushAndPop() {

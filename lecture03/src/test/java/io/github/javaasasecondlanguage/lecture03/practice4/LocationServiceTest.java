@@ -1,12 +1,14 @@
 package io.github.javaasasecondlanguage.lecture03.practice4;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 class LocationServiceTest {
     LocationService locationService;
     Location userLocation;

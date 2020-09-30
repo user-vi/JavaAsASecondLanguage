@@ -1,9 +1,11 @@
 package io.github.javaasasecondlanguage.lecture03.practice3;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Disabled
 class LRUCacheTest {
     @Test
     void lruCache1(){
