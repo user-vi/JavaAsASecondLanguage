@@ -80,7 +80,6 @@ Not enough capacity. Need (auto)resize.
 
 ---
 
-
 ## ArrayList. Complexity
 
 |  contains  | add   | get   |  set  | remove | 
@@ -141,9 +140,6 @@ Linking
 | O(n)       | O(1)  |  O(n) |  O(n) | O(n)   |
 
 ---
-#Practice 1. Implement stack
-
----
 
 ## Generics
 - Collections
@@ -156,7 +152,7 @@ Linking
 ---
 ## Generic list
 ```java
-var intList = new List<Integer>();
+var intList = new ArrayList<Integer>();
 List<String> strList = new ArrayList<>();
 ```
 ---
@@ -190,11 +186,15 @@ Why?
 | Item | Generic method |
 
 ---
+#Practice 1. Implement stack
+
+---
 ## Type Erasure
 Generics were added to Java to ensure type safety and to ensure that generics wouldn't cause overhead at runtime.  
-The compiler applies a process called type erasure on generics at compile time.
-
-Type erasure removes all type parameters and replaces it with their bounds or with Object if the type parameter is unbounded. Thus the bytecode after compilation contains only normal classes, interfaces and methods thus ensuring that no new types are produced. Proper casting is applied as well to the Object type at compile time.
+The compiler applies a process called type erasure on generics at compile time.  
+  
+Type erasure removes all type parameters and replaces it with their bounds or with Object if the type parameter is unbounded.  
+Thus the bytecode after compilation contains only normal classes, interfaces and methods thus ensuring that no new types are produced. Proper casting is applied as well to the Object type at compile time.
 [For backward compatibility with programs written for Java<5](https://docs.oracle.com/javase/specs/jls/se14/html/jls-4.html#jls-4.7)
 
 ---
