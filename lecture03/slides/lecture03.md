@@ -5,7 +5,7 @@
 ---
 # Agenda
 - Collections
-- List
+- ArrayList
 - Generics
 - Set
 - Map
@@ -20,16 +20,61 @@ Java collections zoo
 
 # Agenda
 - Collections
-- **[List]**
+- **[ArrayList]**
 - Generics
-- Set
-- Map
+- HashMap
 - Stream API
 ---
 
-## List
+## ArrayList
 Auto-resizeable array
-Resizes x1.5 times per increase
+
+```java
+var l1 = new ArrayList<String>();
+var ships = List.of<String>("Boeotians", "Minyans", "Phocēans"); //unmodifiable list
+```
+---
+
+## ArrayList. Internals #1
+
+```java
+List<String> list = new ArrayList<>();
+```
+<img src="img/newarray.png" alt="exception" style="width: 600px;"/>
+
+```java
+list.add("0");
+list.add("1");
+```
+
+<img src="img/array1.png" alt="exception" style="width: 600px;"/>
+
+
+---
+### ArrayList. Internals #2
+```java
+list.addAll(Arrays.asList("2", "3", "4", "5", "6", "7", "8"));
+list.add("9");
+```
+
+<img src="img/array9.png" alt="exception" style="width: 600px;"/>
+
+
+---
+### ArrayList. Internals #3
+```java
+list.add("10");
+```
+Not enough capacity. Need (auto)resize.
+
+<img src="img/arrayresized.png" alt="exception" style="width: 750px;"/>
+
+<img src="img/array10.png" alt="exception" style="width: 750px;"/>
+
+---
+### Quiz
+#### What is the difference between capacity and size in `ArrayList`?
+
 ---
 
 
@@ -39,11 +84,9 @@ Resizes x1.5 times per increase
 |:----------:|:-----:|:-----:|:-----:|:------:|
 | O(n)       | O(1)* |  O(1) |  O(1) | O(n)   |
 
-* Amortized complexity. How to implement List that has O(1)?
+* Amortized complexity. How to implement List that has O(1) on add()?
 ---
 ## Generics
----
-# Agenda
 - Collections
 - List
 - **[Generics]**
