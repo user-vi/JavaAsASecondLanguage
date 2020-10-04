@@ -191,6 +191,8 @@ Why?
 
 ---
 ## Terms...
+|  Term  | Example   |
+|:----------:|:-----:|
 | List | Raw type |
 | <E extends Number> | Bounded type parameter |
 | static <E> List<E> asList(E[] a)| Recursive type bound |
