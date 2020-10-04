@@ -325,7 +325,7 @@ a.hashcode() is the same during object lifetime
      .collect(toList());
 ```
 
-
+---
 ## Operations
 
 1. Intermediate
