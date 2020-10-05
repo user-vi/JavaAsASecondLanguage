@@ -1,4 +1,4 @@
-package io.github.javaasasecondlanguage.chat;
+package io.github.javaasasecondlanguage.chat.server;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
