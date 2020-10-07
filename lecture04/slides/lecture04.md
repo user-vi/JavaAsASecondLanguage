@@ -17,14 +17,13 @@
 - Web Service with Spring Boot
 - Testing HTTP Services
 
-
+---
 ## OSI model
----?image=img/osi2.png&size=auto 70% 
+![](img/osi2.png)
 
 ---
-
 ## HTTP - Application layer client-server protocol
----?image=img/HTTP.png&size=auto 70% 
+![](img/HTTP.png)
 
 ---
 
@@ -137,7 +136,6 @@ So we can do previous example just by typing in a browser:
 > example.org
 
 ---
-
 ### When to use HTTP for inter-program communication?
 **When we want:**
 - simplicity (easy to develop and test)
@@ -148,8 +146,6 @@ So we can do previous example just by typing in a browser:
 - client-server only - no push requests from server
 
 ---
-
-
 ## cURL
 Super popular command line tool for multiple protocols testing (including **HTTP**)   
 [https://curl.haxx.se/](https://curl.haxx.se/)  
@@ -221,21 +217,21 @@ Server: Jetty(9.4.z-SNAPSHOT)
 - Web Service with Spring Boot
 - Testing HTTP Services
 
-
+---
 ## REST
 **REST** (Representational State Transfer) architecture style, where services communicate over **HTTP**.  
-There are also some restrictions on how services must use HTTP for communication
+There are also some restrictions on how services must use HTTP for communication.
 
 ---
-
 ## REST API
 REST API is a common way for services to publish their functionality for other services.  
+
+---
 ### REST API Examples:
 **Twitter:** [https://dev.twitter.com/rest/public](https://dev.twitter.com/rest/public)  
 **Github:** [https://developer.github.com/v3/](https://developer.github.com/v3/)
 
 ---
-
 ## Java HTTP Client
 - HTTP
 - REST
@@ -244,7 +240,6 @@ REST API is a common way for services to publish their functionality for other s
 - Testing HTTP Services
 
 ---
-
 ## Chat REST API
 We got a chat REST service open for you on **http://3.236.217.35/**  
 
@@ -314,8 +309,9 @@ say:
 
 
 ---
-## OkHTTP
-We use build-in java http client  
+## Java Http Client
+We will use a built-in http client.
+
 @See ChatClient
 
 
@@ -330,8 +326,9 @@ We use build-in java http client
 ---
 
 ### Spring
-<img src="img/spring-by-pivotal.png" alt="exception" style="width: 300px;"/>  
-is a universal open-source framework, used to develop web applications  
+<img src="img/spring-by-pivotal.png" alt="exception" style="width: 300px;"/> 
+ 
+A universal open-source framework, used to develop web applications.  
 https://spring.io/  
   
 First version - **2002**
@@ -352,7 +349,8 @@ Today we will build web application with **Spring MVC** module
 ---
 
 ### MVC
-**MVC (Model-View-Controller)** - popular pattern used to build web apps
+**MVC (Model-View-Controller)** - popular pattern used to build web apps.
+
 <img src="img/MVC-Introduction2.jpg" style="width: 600px;"/>
 
 
@@ -360,13 +358,16 @@ Today we will build web application with **Spring MVC** module
 
 ### Spring MVC
 **Spring MVC** - Spring Module that make it easier to build MVC Applications (Like **Django**, **Rails**)
+
+^^^
 <img src="img/spring_mvc.png" alt="exception" style="width: 600px;"/>
 
 
 ---
-
 ### Spring Boot
 Spring is a powerful tool and has a lot of configuration options.  
+
+^^^
 **Spring Boot** is a project, that makes working with Spring easier:
 - embedded tomcat included with servlet container
 - minimum configuration, sane defaults
@@ -402,7 +403,7 @@ management.endpoints.web.exposure.include=*
 
 ---
 ## Start
-- Check service
+### Check service
 ```shell script
 curl localhost:8080/currenttime
 ```
