@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 public class ChatClient {
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final String PROTOCOL = "http://";
-    private static final String HOST = "localhost";
+    private static final String HOST = "localhost";//change to 3.236.217.35 for practice 1
     private static final String PORT = ":8080";
 
     //POST host:port/chat/login?name=my_name
@@ -22,8 +22,7 @@ public class ChatClient {
 
                 .uri(URI.create(PROTOCOL + HOST + PORT + "/chat/login?name=" + name))
                 .build();
-        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return response;
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
     //GET host:port/chat/chat
@@ -38,12 +37,13 @@ public class ChatClient {
 
     //POST host:port/chat/say?name=my_name
     //Body: "msg='my_message'"
-    public static HttpResponse<?> say(String name, String msg) throws IOException {
+    public static HttpResponse<?> say(String name, String msg)
+            throws IOException, InterruptedException {
         throw new RuntimeException("Not implemented");
     }
 
     //GET host:port/chat/online
-    public static HttpResponse<?> viewOnline() throws IOException {
+    public static HttpResponse<?> viewOnline() throws IOException, InterruptedException {
         throw new RuntimeException("Not implemented");
     }
 }

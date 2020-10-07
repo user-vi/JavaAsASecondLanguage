@@ -64,7 +64,7 @@ public class ChatController {
     //TODO
 
     /**
-     * curl -X POST -i localhost:8080/chat/say -d "name=I_CAN_COPY_PASTE&msg=Hello everyone in this chat"
+     * curl -X POST -i localhost:8080/chat/say -d "name=I_CAN_COPY_PASTE&msg=Hello"
      */
     //TODO
 

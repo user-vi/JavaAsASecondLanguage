@@ -43,10 +43,8 @@ Serves HTTP requests. (By default on **80 TCP port**)
 - NGINX
 - embedded (as a library) - Jetty/Embedded Tomcat
 
-Web servers have different functionality and can be extensible  
-  
-We can extend server functionality by custom logic and respond with dynamic content  
-That's what we use to implement game
+Some web servers can be extended by custom logic  
+For java you can use Servlet container, like **tomcat** to serve with custom jav code
 
 ---
 
@@ -214,7 +212,6 @@ Server: Jetty(9.4.z-SNAPSHOT)
 
 ```
 
----
 
 ---
 ## REST
@@ -239,10 +236,20 @@ REST API is a common way for services to publish their functionality for other s
 
 ---
 
+## Java HTTP Client
+- HTTP
+- REST
+- **[Java HTTP Client]**
+- Web Service with Spring Boot
+- Testing HTTP Services
+
+---
+
 ## Chat REST API
-We got a chat REST service open for you on **54.224.37.210**  
-  
-Further you have description of it's REST API
+We got a chat REST service open for you on **http://3.236.217.35/**  
+
+---
+## Practice 1. Implement chat client
 
 ---
 
@@ -307,50 +314,10 @@ say:
 
 
 ---
-## Java HTTP Client
-- HTTP
-- REST
-- **[Java HTTP Client]**
-- Web Service with Spring Boot
-- Testing HTTP Services
-
----
-
 ## OkHTTP
-We use OkHTTP library as java HTTP Client
-[http://square.github.io/okhttp/](http://square.github.io/okhttp/)
-### @see ru.atom.chat.client
+We use build-in java http client  
+@See ChatClient
 
----
-
-## GET example from Java
-```java
-  //GET host:port/chat/online
-  public static Response viewOnline() throws IOException {
-    Request request = new Request.Builder()
-        .get()
-        .url(PROTOCOL + HOST + PORT + "/chat/online")
-        .addHeader("host", HOST + PORT)
-        .build();
-
-    return client.newCall(request).execute();
-  }
-```
----
-
-## POST example from Java
-```java
-  //POST host:port/chat/login?name=my_name
-  public static Response login(String name) throws IOException {
-    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-    Request request = new Request.Builder()
-        .post(RequestBody.create(mediaType, ""))
-        .url(PROTOCOL + HOST + PORT + "/chat/login?name=" + name)
-        .build();
-
-    return client.newCall(request).execute();
-  }
-```
 
 ---
 ## Web Service with Spring Boot
@@ -432,34 +399,35 @@ Add:
 # expose all actuator endpoints
 management.endpoints.web.exposure.include=*
 ```
----
-## Implement service
-TODO
 
 ---
 ## Start
 - Check service
 ```shell script
-curl localhost:8080/TODO
+curl localhost:8080/currenttime
 ```
 ```properties
 curl localhost:8080/actuator
 ```
+---
+## Practice 2. Implement Current Time HTTP Service
+
 
 ---
-# Practice - chat
+## What is inside?
+- DI
+- Rest Controller
 
 ---
-## Quotes API (TODO)
-https://programming-quotes-api.herokuapp.com/quotes/random
+## Practice 3 - chat. Implement Chat Server
+@see lecture04/chat
 
----
-## Web Service with Spring Boot
-- HTTP
-- REST
-- Java HTTP Client
-- Java HTTP Server
-- **[Testing HTTP Services]**
 
 ---
 ## TIL
+- know HTTP
+- You can build REST services for API
+- Spring is a powerful framework that can help to build complex scalable applications
+- Spring Boot makes it even easier by building your service with pre-defined components (spring-boot-starters)
+- Spring Boot Actuator gives you visibility of your service
+- web services are fun!
