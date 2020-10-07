@@ -121,9 +121,9 @@ removes resource
 
 ## HTTP Response
 **Response consists of**
-1. Status code
-1. Response header
-1. Response Body
+- Status code
+- Response header
+- Response Body
 
 [rfc2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)  
 [wiki](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
@@ -241,7 +241,7 @@ REST API is a common way for services to publish their functionality for other s
 
 ---
 ## Chat REST API
-We got a chat REST service open for you on **http://3.236.217.35/**  
+We got a chat REST service open for you on **http://3.236.217.35:8080/**  
 
 ---
 ## Practice 1. Implement chat client
