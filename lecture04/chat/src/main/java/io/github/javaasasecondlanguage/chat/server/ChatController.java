@@ -18,8 +18,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("chat")
 public class ChatController {
-    private Queue<String> messages = new ConcurrentLinkedQueue<>();
-    private Map<String, String> usersOnline = new ConcurrentHashMap<>();
+    private final Queue<String> messages = new ConcurrentLinkedQueue<>();
+    private final Map<String, String> usersOnline = new ConcurrentHashMap<>();
 
     /**
      * curl -X POST -i localhost:8080/chat/login -d "name=I_CAN_COPY_PASTE"
@@ -51,8 +51,10 @@ public class ChatController {
             path = "online",
             method = RequestMethod.GET,
             produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity online() {
-        String responseBody = String.join("\n", usersOnline.keySet().stream().sorted().collect(Collectors.toList()));
+    public ResponseEntity<?> online() {
+        String responseBody = usersOnline.keySet().stream()
+                .sorted()
+                .collect(Collectors.joining("\n"));
         return ResponseEntity.ok(responseBody);
     }
 

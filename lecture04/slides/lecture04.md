@@ -57,33 +57,46 @@ That's what we use to implement game
 - telnet
 
 ---
+## Ads
 
+[kohttp](https://github.com/rybalkinsd/kohttp) - Kotlin DSL HTTP client 
+ 
+![](img/kohttp.png)
+
+---
 ## HTTP via telnet
 ```bash
-> telnet example.org 80
+> telnet example.com 80
 ```
-request:
+
+^^^
+## Request
 ```http
 GET /index.html HTTP/1.1
 host: example.com
 ```
-response:
-```
+
+^^^
+## Response
+```http
 HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Age: 452284
 Cache-Control: max-age=604800
-Content-Type: text/html
-Date: Wed, 14 Mar 2018 11:27:16 GMT
-Etag: "1541025663+ident"
-Expires: Wed, 21 Mar 2018 11:27:16 GMT
-Last-Modified: Fri, 09 Aug 2013 23:54:35 GMT
-Server: ECS (dca/53DB)
+Content-Type: text/html; charset=UTF-8
+Date: Tue, 06 Oct 2020 17:42:54 GMT
+Etag: "3147526947+gzip"
+Expires: Tue, 13 Oct 2020 17:42:54 GMT
+Last-Modified: Thu, 17 Oct 2019 07:18:26 GMT
+Server: ECS (dcb/7F83)
 Vary: Accept-Encoding
 X-Cache: HIT
-Content-Length: 1270
+Content-Length: 1256
 
 <!doctype html>
 <html>
-    <head>
+<head>
+    <title>Example Domain</title>
     ...
 ```
 
@@ -94,7 +107,9 @@ Content-Length: 1270
 1. Request header (starting with **method**)
 1. Request body
 
-**Methods:**
+
+^^^
+## Methods
 - **GET**
 Request resource. **GET** must not change resource
 - **POST**
@@ -119,8 +134,8 @@ removes resource
 ---
 
 ## HTTP via browser
-When you enter address line in browser, in creates **GET** request  
-So we can do previous example just by typing in browser:
+When you enter address line in a browser, it creates a **GET** request.
+So we can do previous example just by typing in a browser:
 > example.org
 
 ---
@@ -147,8 +162,11 @@ it wraps **libcurl** library, which is available for all major languages
 ## GET Example
 Request from cURL:
 ```bash
-> curl -i -X GET example.org
+> curl -i -X GET example.com
 ```
+
+
+^^^
 Response:
 ```http
 HTTP/1.1 200 OK
