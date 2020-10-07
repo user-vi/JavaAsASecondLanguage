@@ -19,12 +19,12 @@
 
 
 ## OSI model
----?image=lecture04/presentation/assets/img/osi2.png&size=auto 70% 
+---?image=img/osi2.png&size=auto 70% 
 
 ---
 
 ## HTTP - Application layer client-server protocol
----?image=lecture04/presentation/assets/img/HTTP.png&size=auto 70% 
+---?image=img/HTTP.png&size=auto 70% 
 
 ---
 
@@ -335,9 +335,17 @@ We use OkHTTP library as java HTTP Client
 ```
 
 ---
+## Web Service with Spring Boot
+- HTTP
+- REST
+- Java HTTP Client
+- **[Web Service with Spring Boot]**
+- Testing HTTP Services
+
+---
 
 ### Spring
-<img src="lecture04/presentation/assets/img/spring-by-pivotal.png" alt="exception" style="width: 300px;"/>  
+<img src="img/spring-by-pivotal.png" alt="exception" style="width: 300px;"/>  
 is a universal open-source framework, used to develop web applications  
 https://spring.io/  
   
@@ -360,14 +368,14 @@ Today we will build web application with **Spring MVC** module
 
 ### MVC
 **MVC (Model-View-Controller)** - popular pattern used to build web apps
-<img src="lecture04/presentation/assets/img/MVC-Introduction2.jpg" style="width: 600px;"/>
+<img src="img/MVC-Introduction2.jpg" style="width: 600px;"/>
 
 
 ---
 
 ### Spring MVC
 **Spring MVC** - Spring Module that make it easier to build MVC Applications (Like **Django**, **Rails**)
-<img src="lecture04/presentation/assets/img/spring_mvc.png" alt="exception" style="width: 600px;"/>
+<img src="img/spring_mvc.png" alt="exception" style="width: 600px;"/>
 
 
 ---
@@ -378,32 +386,54 @@ Spring is a powerful tool and has a lot of configuration options.
 - embedded tomcat included with servlet container
 - minimum configuration, sane defaults
 - metrics, health checks and externalized configuration
+- spring boot starters
 https://projects.spring.io/spring-boot/  
   
 First version: **2014**
-  
-**With Spring Boot our life is much easier :)**
-
-
----
-## Web Service with Spring Boot
-- HTTP
-- REST
-- Java HTTP Client
-- **[Web Service with Spring Boot]**
-- Testing HTTP Services
 
 ---
 ## Generate project with spring initializr
-https://start.spring.io/
-
-Unzip into lecture directory
+https://start.spring.io/  
+Add dependencies:
+- Spring Web (MVS Framework)
+- Spring Boot Actuator (monitor application via HTTP)
+Unzip anywhere
 
 ---
 ## What is inside
+- build.gradle
+Change:
+```kotlin
+sourceCompatibility = '14'
+```
+- Application.java
+What is @SpringBootApplication ?
+- application.properties
+Add:
+```properties
+# expose all actuator endpoints
+management.endpoints.web.exposure.include=*
+```
+---
+## Implement service
+TODO
 
 ---
+## Start
+- Check service
+```shell script
+curl localhost:8080/TODO
+```
+```properties
+curl localhost:8080/actuator
+```
 
+---
+# Practice - chat
+
+---
+## Quotes API (TODO)
+https://programming-quotes-api.herokuapp.com/quotes/random
 
 ---
 ## Web Service with Spring Boot
