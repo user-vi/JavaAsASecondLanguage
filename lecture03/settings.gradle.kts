@@ -1,2 +1,1 @@
-rootProject.name = "lecture04"
-include("chat")
+rootProject.name = "lecture03"
