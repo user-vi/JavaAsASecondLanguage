@@ -10,14 +10,6 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.castToMap;
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.castToMaps;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.CONTENT;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.LOCALHOST;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.PUBLISHER_NAME;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.SUBSCRIBER_TOKEN;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.USER_NAME;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.USER_TOKEN;
 
 public class FlitterRestWrapper {
 
@@ -38,26 +30,26 @@ public class FlitterRestWrapper {
     }
 
     public void clear() {
-        var endpoint = LOCALHOST + port + "clear";
+        var endpoint = TestConstants.LOCALHOST + port + "clear";
         restTemplate.delete(endpoint);
     }
 
     public List<String> listUsers() {
-        var endpoint = LOCALHOST + port + "/user/list";
+        var endpoint = TestConstants.LOCALHOST + port + "/user/list";
         var users = restTemplate.getForObject(endpoint, String[].class);
         return List.of(users);
     }
 
     public String addUser(String name) {
-        var endpoint = LOCALHOST + port + "/user/register";
-        var params = Map.of(USER_NAME, name);
+        var endpoint = TestConstants.LOCALHOST + port + "/user/register";
+        var params = Map.of(TestConstants.USER_NAME, name);
 
-        var response = castToMap(
+        var response = CollectionTestUtils.castToMap(
                 restTemplate.postForObject(endpoint, params, Object.class)
         );
 
-        var outputName = response.get(USER_NAME);
-        var outputToken = response.get(USER_TOKEN);
+        var outputName = response.get(TestConstants.USER_NAME);
+        var outputToken = response.get(TestConstants.USER_TOKEN);
         assertEquals(name, outputName);
         assertNotNull(outputToken);
 
@@ -73,10 +65,10 @@ public class FlitterRestWrapper {
     }
 
     public void addFlit(String token, String content) {
-        var endpoint = LOCALHOST + port + "/flit/add";
+        var endpoint = TestConstants.LOCALHOST + port + "/flit/add";
         var params = Map.of(
-                USER_TOKEN, token,
-                CONTENT, content
+                TestConstants.USER_TOKEN, token,
+                TestConstants.CONTENT, content
         );
 
         Boolean response = restTemplate.postForObject(endpoint, params, Boolean.class);
@@ -84,38 +76,38 @@ public class FlitterRestWrapper {
     }
 
     public List<Map<String, Object>> listAllFlits() {
-        var endpoint = LOCALHOST + port + "/flit/list";
-        var flits = castToMaps(
+        var endpoint = TestConstants.LOCALHOST + port + "/flit/list";
+        var flits = CollectionTestUtils.castToMaps(
                 restTemplate.getForObject(endpoint, Object[].class)
         );
         return flits;
     }
 
     public List<Map<String, Object>> listFlitsByUser(String name) {
-        var endpoint = LOCALHOST + port + "/flit/list/" + name;
-        var flits = castToMaps(
+        var endpoint = TestConstants.LOCALHOST + port + "/flit/list/" + name;
+        var flits = CollectionTestUtils.castToMaps(
                 restTemplate.getForObject(endpoint, Object[].class)
         );
         return flits;
     }
 
     public List<String> listSubscribers(String token) {
-        var endpoint = LOCALHOST + port + "/subscribers/list/" + token;
+        var endpoint = TestConstants.LOCALHOST + port + "/subscribers/list/" + token;
         var subscribers = restTemplate.getForObject(endpoint, String[].class);
         return List.of(subscribers);
     }
 
     public List<String> listPublishers(String token) {
-        var endpoint = LOCALHOST + port + "/publishers/list/" + token;
+        var endpoint = TestConstants.LOCALHOST + port + "/publishers/list/" + token;
         var subscribers = restTemplate.getForObject(endpoint, String[].class);
         return List.of(subscribers);
     }
 
     public void subscribe(String subscriberToken, String publisherName) {
-        var endpoint = LOCALHOST + port + "/subscribe";
+        var endpoint = TestConstants.LOCALHOST + port + "/subscribe";
         var params = Map.of(
-                SUBSCRIBER_TOKEN, subscriberToken,
-                PUBLISHER_NAME, publisherName
+                TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
+                TestConstants.PUBLISHER_NAME, publisherName
         );
         restTemplate.postForObject(endpoint, params, Object.class);
     }
@@ -129,10 +121,10 @@ public class FlitterRestWrapper {
     }
 
     public void unsubscribe(String subscriberToken, String publisherName) {
-        var endpoint = LOCALHOST + port + "/unsubscribe";
+        var endpoint = TestConstants.LOCALHOST + port + "/unsubscribe";
         var params = Map.of(
-                SUBSCRIBER_TOKEN, subscriberToken,
-                PUBLISHER_NAME, publisherName
+                TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
+                TestConstants.PUBLISHER_NAME, publisherName
         );
         restTemplate.postForObject(endpoint, params, Object.class);
     }
@@ -146,8 +138,8 @@ public class FlitterRestWrapper {
     }
 
     public List<Map<String, Object>> listFlitsConsumedByUser(String token) {
-        var endpoint = LOCALHOST + port + "/flit/list/feed/" + token;
-        var flits = castToMaps(
+        var endpoint = TestConstants.LOCALHOST + port + "/flit/list/feed/" + token;
+        var flits = CollectionTestUtils.castToMaps(
                 restTemplate.getForObject(endpoint, Object[].class)
         );
         return flits;

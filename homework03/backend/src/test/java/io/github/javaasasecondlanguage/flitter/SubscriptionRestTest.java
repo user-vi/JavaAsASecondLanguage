@@ -1,12 +1,14 @@
 package io.github.javaasasecondlanguage.flitter;
 
+import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
+import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
+import io.github.javaasasecondlanguage.flitter.utils.TestConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,11 +17,6 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertMapsEqualByKeys;
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertSetEquals;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.CONTENT;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.USER_NAME;
-import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.USER_TOKEN;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SubscriptionRestTest {
@@ -59,22 +56,22 @@ public class SubscriptionRestTest {
 
         rest.subscribe(sashaToken, "Nikita");
 
-        assertSetEquals(
+        CollectionTestUtils.assertSetEquals(
                 List.of("Nikita"),
                 rest.listPublishers(sashaToken)
         );
-        assertSetEquals(
+        CollectionTestUtils.assertSetEquals(
                 List.of("Sasha"),
                 rest.listSubscribers(nikitaToken)
         );
 
         rest.unsubscribe(sashaToken, "Nikita");
 
-        assertSetEquals(
+        CollectionTestUtils.assertSetEquals(
                 Collections.emptyList(),
                 rest.listPublishers(sashaToken)
         );
-        assertSetEquals(
+        CollectionTestUtils.assertSetEquals(
                 Collections.emptyList(),
                 rest.listSubscribers(nikitaToken)
         );
@@ -92,12 +89,12 @@ public class SubscriptionRestTest {
         rest.subscribeAll(subscriberTokens, List.of("Pub"));
 
         for (String subscriberToken : subscriberTokens) {
-            assertSetEquals(
+            CollectionTestUtils.assertSetEquals(
                     List.of("Pub"),
                     rest.listPublishers(subscriberToken)
             );
         }
-        assertSetEquals(
+        CollectionTestUtils.assertSetEquals(
                 subscriberNames,
                 rest.listSubscribers(publisherToken)
         );
@@ -105,12 +102,12 @@ public class SubscriptionRestTest {
         rest.unsubscribeAll(subscriberTokens, List.of("Pub"));
 
         for (String subscriberToken : subscriberTokens) {
-            assertSetEquals(
+            CollectionTestUtils.assertSetEquals(
                     Collections.emptyList(),
                     rest.listPublishers(subscriberToken)
             );
         }
-        assertSetEquals(
+        CollectionTestUtils.assertSetEquals(
                 Collections.emptyList(),
                 rest.listSubscribers(publisherToken)
         );
@@ -133,13 +130,13 @@ public class SubscriptionRestTest {
         rest.subscribeAll(subscriberTokens, publisherNames);
 
         for (String subscriberToken : subscriberTokens) {
-            assertSetEquals(
+            CollectionTestUtils.assertSetEquals(
                     publisherNames,
                     rest.listPublishers(subscriberToken)
             );
         }
         for (String publisherToken : publisherTokens) {
-            assertSetEquals(
+            CollectionTestUtils.assertSetEquals(
                     subscriberNames,
                     rest.listSubscribers(publisherToken)
             );
@@ -148,13 +145,13 @@ public class SubscriptionRestTest {
         rest.unsubscribeAll(subscriberTokens, publisherNames);
 
         for (String publisherToken : publisherTokens) {
-            assertSetEquals(
+            CollectionTestUtils.assertSetEquals(
                     Collections.emptyList(),
                     rest.listSubscribers(publisherToken)
             );
         }
         for (String subscriberToken : subscriberTokens) {
-            assertSetEquals(
+            CollectionTestUtils.assertSetEquals(
                     Collections.emptyList(),
                     rest.listPublishers(subscriberToken)
             );
@@ -187,8 +184,8 @@ public class SubscriptionRestTest {
                 var content = String.format("Flit number %s by %s", flitIndex, publisherName);
                 rest.addFlit(publisherToken, content);
                 expectedFlits.add(Map.of(
-                        USER_NAME, publisherName,
-                        CONTENT, content
+                        TestConstants.USER_NAME, publisherName,
+                        TestConstants.CONTENT, content
                 ));
             }
         }
@@ -200,6 +197,6 @@ public class SubscriptionRestTest {
         }
 
         var flitsFromFeed = rest.listFlitsConsumedByUser(subscriberToken);
-        assertMapsEqualByKeys(expectedFlits, flitsFromFeed, USER_NAME, USER_TOKEN);
+        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flitsFromFeed, TestConstants.USER_NAME, TestConstants.USER_TOKEN);
     }
 }

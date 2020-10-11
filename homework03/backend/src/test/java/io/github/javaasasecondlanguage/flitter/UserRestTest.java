@@ -1,17 +1,17 @@
 package io.github.javaasasecondlanguage.flitter;
 
+import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
+import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertSetEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserRestTest {
@@ -60,6 +60,6 @@ public class UserRestTest {
         }
 
         var listedUsers = rest.listUsers();
-        assertSetEquals(inputUsers, listedUsers);
+        CollectionTestUtils.assertSetEquals(inputUsers, listedUsers);
     }
 }
