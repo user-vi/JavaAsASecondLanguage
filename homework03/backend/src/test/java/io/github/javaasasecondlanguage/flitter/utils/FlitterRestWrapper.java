@@ -36,20 +36,19 @@ public class FlitterRestWrapper {
 
     public List<String> listUsers() {
         var endpoint = TestConstants.LOCALHOST + port + "/user/list";
-        var users = restTemplate.getForObject(endpoint, String[].class);
-        return List.of(users);
+        var users = restTemplate.getForObject(endpoint, ArrayResult.class);
+        return users.getDataAsList();
     }
 
     public String addUser(String name) {
         var endpoint = TestConstants.LOCALHOST + port + "/user/register";
         var params = Map.of(TestConstants.USER_NAME, name);
 
-        var response = CollectionTestUtils.castToMap(
-                restTemplate.postForObject(endpoint, params, Object.class)
-        );
+        var result = restTemplate.postForObject(endpoint, params, MapResult.class);
 
-        var outputName = response.get(TestConstants.USER_NAME);
-        var outputToken = response.get(TestConstants.USER_TOKEN);
+        var data = result.getData();
+        var outputName = data.get(TestConstants.USER_NAME);
+        var outputToken = data.get(TestConstants.USER_TOKEN);
         assertEquals(name, outputName);
         assertNotNull(outputToken);
 
@@ -71,36 +70,31 @@ public class FlitterRestWrapper {
                 TestConstants.CONTENT, content
         );
 
-        Boolean response = restTemplate.postForObject(endpoint, params, Boolean.class);
-        assertTrue(response);
+        restTemplate.postForObject(endpoint, params, MapResult.class);
     }
 
     public List<Map<String, Object>> listAllFlits() {
         var endpoint = TestConstants.LOCALHOST + port + "/flit/list";
-        var flits = CollectionTestUtils.castToMaps(
-                restTemplate.getForObject(endpoint, Object[].class)
-        );
-        return flits;
+        var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        return result.getDataAsMaps();
     }
 
     public List<Map<String, Object>> listFlitsByUser(String name) {
         var endpoint = TestConstants.LOCALHOST + port + "/flit/list/" + name;
-        var flits = CollectionTestUtils.castToMaps(
-                restTemplate.getForObject(endpoint, Object[].class)
-        );
-        return flits;
+        var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        return result.getDataAsMaps();
     }
 
     public List<String> listSubscribers(String token) {
         var endpoint = TestConstants.LOCALHOST + port + "/subscribers/list/" + token;
-        var subscribers = restTemplate.getForObject(endpoint, String[].class);
-        return List.of(subscribers);
+        var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        return result.getDataAsList();
     }
 
     public List<String> listPublishers(String token) {
         var endpoint = TestConstants.LOCALHOST + port + "/publishers/list/" + token;
-        var subscribers = restTemplate.getForObject(endpoint, String[].class);
-        return List.of(subscribers);
+        var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        return result.getDataAsList();
     }
 
     public void subscribe(String subscriberToken, String publisherName) {
@@ -109,7 +103,7 @@ public class FlitterRestWrapper {
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
         );
-        restTemplate.postForObject(endpoint, params, Object.class);
+        var result = restTemplate.postForObject(endpoint, params, MapResult.class);
     }
 
     public void subscribeAll(Collection<String> subscriberTokens, List<String> publisherNames) {
@@ -126,7 +120,7 @@ public class FlitterRestWrapper {
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
         );
-        restTemplate.postForObject(endpoint, params, Object.class);
+        restTemplate.postForObject(endpoint, params, MapResult.class);
     }
 
     public void unsubscribeAll(Collection<String> subscriberTokens, List<String> publisherNames) {
@@ -139,9 +133,7 @@ public class FlitterRestWrapper {
 
     public List<Map<String, Object>> listFlitsConsumedByUser(String token) {
         var endpoint = TestConstants.LOCALHOST + port + "/flit/list/feed/" + token;
-        var flits = CollectionTestUtils.castToMaps(
-                restTemplate.getForObject(endpoint, Object[].class)
-        );
-        return flits;
+        var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        return result.getDataAsMaps();
     }
 }
