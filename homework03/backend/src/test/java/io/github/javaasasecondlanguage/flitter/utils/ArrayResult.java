@@ -40,7 +40,7 @@ public class ArrayResult {
         if (data != null) {
             return (List<T>) List.of(data);
         } else {
-            return List.of();
+            return null;
         }
     }
 
@@ -49,12 +49,8 @@ public class ArrayResult {
         if (data != null) {
             return castToMaps(data);
         } else {
-            return List.of();
+            return null;
         }
-    }
-
-    public boolean isFail() {
-        return errorMessage != null;
     }
 
     @Override

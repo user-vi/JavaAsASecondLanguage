@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertThatStatusIsExpected;
+import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
+import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
 import static java.lang.String.join;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -39,17 +42,25 @@ public class FlitterRestWrapper {
         restTemplate.delete(endpoint);
     }
 
-    public List<String> listUsers() {
+    public List<String> listUsers(ExpectedStatus expectedStatus) {
         var endpoint = getPath("/user/list");
-        var users = restTemplate.getForObject(endpoint, ArrayResult.class);
-        return users.getDataAsList();
+        var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
+        return result.getDataAsList();
     }
 
-    public String addUser(String name) {
+    public String addUser(String name,
+                          ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/user/register");
         var params = Map.of(TestConstants.USER_NAME, name);
-
         var result = restTemplate.postForObject(endpoint, params, MapResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
+        if (expectedStatus == EXPECT_FAIL) {
+            return null;
+        }
 
         var data = result.getData();
         var outputName = data.get(TestConstants.USER_NAME);
@@ -60,85 +71,121 @@ public class FlitterRestWrapper {
         return outputToken.toString();
     }
 
-    public List<String> addAllUsers(Collection<String> userNames) {
+    public List<String> addAllUsers(Collection<String> userNames,
+                                    ExpectedStatus expectedStatus) {
         var userTokens = userNames
                 .stream()
-                .map(name -> addUser(name))
+                .map(name -> addUser(name, expectedStatus))
                 .collect(Collectors.toList());
         return userTokens;
     }
 
-    public void addFlit(String token, String content) {
+    public void addFlit(String token,
+                        String content,
+                        ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/flit/add");
         var params = Map.of(
                 TestConstants.USER_TOKEN, token,
                 TestConstants.CONTENT, content
         );
-
-        restTemplate.postForObject(endpoint, params, MapResult.class);
+        var result = restTemplate.postForObject(endpoint, params, MapResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
     }
 
-    public List<Map<String, Object>> discoverFlits() {
+    public List<Map<String, Object>> discoverFlits(ExpectedStatus expectedStatus) {
         var endpoint = getPath("/flit/discover");
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
         return result.getDataAsMaps();
     }
 
-    public List<Map<String, Object>> listFlitsByUser(String name) {
+    public List<Map<String, Object>> listFlitsByUser(String name,
+                                                     ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/flit/list", name);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
         return result.getDataAsMaps();
     }
 
-    public List<String> listSubscribers(String token) {
+    public List<String> listSubscribers(String token,
+                                        ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/subscribers/list", token);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
         return result.getDataAsList();
     }
 
-    public List<String> listPublishers(String token) {
+    public List<String> listPublishers(String token,
+                                       ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/publishers/list", token);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
         return result.getDataAsList();
     }
 
-    public void subscribe(String subscriberToken, String publisherName) {
+    public void subscribe(String subscriberToken,
+                          String publisherName,
+                          ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/subscribe");
         var params = Map.of(
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
         );
         var result = restTemplate.postForObject(endpoint, params, MapResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
     }
 
-    public void subscribeAll(Collection<String> subscriberTokens, List<String> publisherNames) {
+    public void subscribeAll(Collection<String> subscriberTokens,
+                             List<String> publisherNames,
+                             ExpectedStatus expectedStatus
+    ) {
         for (String publisherName : publisherNames) {
             for (String subscriberToken : subscriberTokens) {
-                subscribe(subscriberToken, publisherName);
+                subscribe(subscriberToken, publisherName, expectedStatus);
             }
         }
     }
 
-    public void unsubscribe(String subscriberToken, String publisherName) {
+    public void unsubscribe(String subscriberToken,
+                            String publisherName,
+                            ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/unsubscribe");
         var params = Map.of(
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
         );
-        restTemplate.postForObject(endpoint, params, MapResult.class);
+        var result = restTemplate.postForObject(endpoint, params, MapResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
     }
 
-    public void unsubscribeAll(Collection<String> subscriberTokens, List<String> publisherNames) {
+    public void unsubscribeAll(Collection<String> subscriberTokens,
+                               List<String> publisherNames,
+                               ExpectedStatus expectedStatus
+    ) {
         for (String publisherName : publisherNames) {
             for (String subscriberToken : subscriberTokens) {
-                unsubscribe(subscriberToken, publisherName);
+                unsubscribe(subscriberToken, publisherName, expectedStatus);
             }
         }
     }
 
-    public List<Map<String, Object>> listFlitsConsumedByUser(String token) {
+    public List<Map<String, Object>> listFlitsConsumedByUser(String token,
+                                                             ExpectedStatus expectedStatus
+    ) {
         var endpoint = getPath("/flit/list/feed", token);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
+        assertThatStatusIsExpected(expectedStatus, result);
+
         return result.getDataAsMaps();
     }
 }
