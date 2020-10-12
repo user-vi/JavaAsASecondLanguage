@@ -75,8 +75,8 @@ public class FlitterRestWrapper {
         assertTrue(response);
     }
 
-    public List<Map<String, Object>> listAllFlits() {
-        var endpoint = TestConstants.LOCALHOST + port + "/flit/list";
+    public List<Map<String, Object>> discoverFlits() {
+        var endpoint = TestConstants.LOCALHOST + port + "/flit/discover";
         var flits = CollectionTestUtils.castToMaps(
                 restTemplate.getForObject(endpoint, Object[].class)
         );
