@@ -1,5 +1,8 @@
 package io.github.javaasasecondlanguage.flitter.utils;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,6 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
+import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -65,31 +69,5 @@ public class CollectionTestUtils {
         }
 
         return outputList;
-    }
-
-    public static void assertThatStatusIsExpected(ExpectedStatus expectedStatus, ArrayResult result) {
-        var data = result.getData();
-        var errorMessage = result.getErrorMessage();
-        assertThatStatusIsExpected(expectedStatus, errorMessage, data);
-    }
-
-    public static void assertThatStatusIsExpected(ExpectedStatus expectedStatus, MapResult result) {
-        var data = result.getData();
-        var errorMessage = result.getErrorMessage();
-        assertThatStatusIsExpected(expectedStatus, errorMessage, data);
-    }
-
-    private static void assertThatStatusIsExpected(ExpectedStatus expectedStatus,
-                                                   String errorMessage,
-                                                   Object data) {
-        boolean expectedSuccess = (expectedStatus == EXPECT_SUCCESS);
-        var receivedSuccess = (errorMessage == null);
-
-        if (!expectedSuccess && receivedSuccess) {
-            fail("Expected fail in this response, but got success instead. Received data: "+data);
-        }
-        if (expectedSuccess && !receivedSuccess) {
-            fail("Expected success in this response, but got fail instead. Message: "+errorMessage);
-        }
     }
 }
