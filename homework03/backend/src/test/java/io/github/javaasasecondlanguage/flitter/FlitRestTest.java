@@ -34,7 +34,7 @@ public class FlitRestTest {
 
     @Test
     public void test_listAllFlits_empty() {
-        var flits = rest.listAllFlits();
+        var flits = rest.discoverFlits();
         assertEquals(0, flits.size());
     }
 
@@ -52,7 +52,7 @@ public class FlitRestTest {
         var inputContent = "My first flit";
 
         rest.addFlit(token, inputContent);
-        var flits = rest.listAllFlits();
+        var flits = rest.discoverFlits();
 
         var expectedFlits = List.of(
                 Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit")
@@ -66,7 +66,7 @@ public class FlitRestTest {
         rest.addFlit(token, "My first flit");
         rest.addFlit(token, "My second flit");
 
-        var flits = rest.listAllFlits();
+        var flits = rest.discoverFlits();
 
         var expectedFlits = List.of(
                 Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit"),
@@ -85,7 +85,7 @@ public class FlitRestTest {
         rest.addFlit(tokenTwo, "Nikita's first flit");
         rest.addFlit(tokenTwo, "Nikita's second flit");
 
-        var flits = rest.listAllFlits();
+        var flits = rest.discoverFlits();
 
         var expectedFlits = List.of(
                 Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's first flit"),

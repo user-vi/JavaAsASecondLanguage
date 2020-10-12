@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.lang.String.join;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,19 +30,23 @@ public class FlitterRestWrapper {
         return port;
     }
 
+    public String getPath(String... parts) {
+        return TestConstants.LOCALHOST + port + join("/", parts);
+    }
+
     public void clear() {
-        var endpoint = TestConstants.LOCALHOST + port + "clear";
+        var endpoint = getPath("clear");
         restTemplate.delete(endpoint);
     }
 
     public List<String> listUsers() {
-        var endpoint = TestConstants.LOCALHOST + port + "/user/list";
+        var endpoint = getPath("/user/list");
         var users = restTemplate.getForObject(endpoint, ArrayResult.class);
         return users.getDataAsList();
     }
 
     public String addUser(String name) {
-        var endpoint = TestConstants.LOCALHOST + port + "/user/register";
+        var endpoint = getPath("/user/register");
         var params = Map.of(TestConstants.USER_NAME, name);
 
         var result = restTemplate.postForObject(endpoint, params, MapResult.class);
@@ -64,7 +69,7 @@ public class FlitterRestWrapper {
     }
 
     public void addFlit(String token, String content) {
-        var endpoint = TestConstants.LOCALHOST + port + "/flit/add";
+        var endpoint = getPath("/flit/add");
         var params = Map.of(
                 TestConstants.USER_TOKEN, token,
                 TestConstants.CONTENT, content
@@ -74,31 +79,31 @@ public class FlitterRestWrapper {
     }
 
     public List<Map<String, Object>> discoverFlits() {
-        var endpoint = TestConstants.LOCALHOST + port + "/flit/discover";
+        var endpoint = getPath("/flit/discover");
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
         return result.getDataAsMaps();
     }
 
     public List<Map<String, Object>> listFlitsByUser(String name) {
-        var endpoint = TestConstants.LOCALHOST + port + "/flit/list/" + name;
+        var endpoint = getPath("/flit/list", name);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
         return result.getDataAsMaps();
     }
 
     public List<String> listSubscribers(String token) {
-        var endpoint = TestConstants.LOCALHOST + port + "/subscribers/list/" + token;
+        var endpoint = getPath("/subscribers/list", token);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
         return result.getDataAsList();
     }
 
     public List<String> listPublishers(String token) {
-        var endpoint = TestConstants.LOCALHOST + port + "/publishers/list/" + token;
+        var endpoint = getPath("/publishers/list", token);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
         return result.getDataAsList();
     }
 
     public void subscribe(String subscriberToken, String publisherName) {
-        var endpoint = TestConstants.LOCALHOST + port + "/subscribe";
+        var endpoint = getPath("/subscribe");
         var params = Map.of(
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
@@ -115,7 +120,7 @@ public class FlitterRestWrapper {
     }
 
     public void unsubscribe(String subscriberToken, String publisherName) {
-        var endpoint = TestConstants.LOCALHOST + port + "/unsubscribe";
+        var endpoint = getPath("/unsubscribe");
         var params = Map.of(
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
@@ -132,7 +137,7 @@ public class FlitterRestWrapper {
     }
 
     public List<Map<String, Object>> listFlitsConsumedByUser(String token) {
-        var endpoint = TestConstants.LOCALHOST + port + "/flit/list/feed/" + token;
+        var endpoint = getPath("/flit/list/feed", token);
         var result = restTemplate.getForObject(endpoint, ArrayResult.class);
         return result.getDataAsMaps();
     }
