@@ -35,7 +35,7 @@ public class FlitterRestWrapper {
     }
 
     public void clear() {
-        var endpoint = getPath("clear");
+        var endpoint = getPath("/clear");
         restTemplate.delete(endpoint);
     }
 
