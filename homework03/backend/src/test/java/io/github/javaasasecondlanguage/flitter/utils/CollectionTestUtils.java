@@ -60,10 +60,11 @@ public class CollectionTestUtils {
         }
     }
 
-    public static List<Map<String, Object>> castToMaps(Object[] arr) {
+    public static List<Map<String, Object>> castToMapList(Object inputObject) {
         var outputList = new ArrayList<Map<String, Object>>();
 
-        for (var obj : arr) {
+        var inputList = (List) inputObject;
+        for (var obj : inputList) {
             Map<String, Object> map = castToMap(obj);
             outputList.add(map);
         }

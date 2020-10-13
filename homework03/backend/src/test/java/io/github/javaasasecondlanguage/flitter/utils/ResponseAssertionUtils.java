@@ -9,21 +9,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class ResponseAssertionUtils {
 
-    public static void assertThatStatusIsExpected(ExpectedStatus expectedStatus, ResponseEntity<?> responseEntity) {
+    public static void assertThatStatusIsExpected(ExpectedStatus expectedStatus, ResponseEntity<Result> responseEntity) {
         var statusCode = responseEntity.getStatusCode();
-        var body = responseEntity.getBody();
+        var result = responseEntity.getBody();
 
-        Object data = null;
-        String errorMessage = null;
-        if (body instanceof ArrayResult) {
-            var arrayResult = (ArrayResult) body;
-            data = arrayResult.getData();
-            errorMessage = arrayResult.getErrorMessage();
-        } else if (body instanceof MapResult) {
-            var mapResult = (MapResult) body;
-            data = mapResult.getData();
-            errorMessage = mapResult.getErrorMessage();
-        }
+        Object data = result.getData();
+        String errorMessage = result.getErrorMessage();
 
         if (expectedStatus == EXPECT_SUCCESS) {
             handleUnexpectedFail(statusCode, errorMessage, data);
