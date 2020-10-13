@@ -1,66 +1,126 @@
-**Task 3**
+# Flitter web service
 
-Требуется реализовать следующие REST сервисы:
+You need to implement several REST services.
 
-* "/clear": полностью сбрасывает состояние приложения (удаляет всех пользователей, все сообщения и тд).
-    - Метод: DELETE   
-    - Принимает: ничего  
-    - Возвращает: неважно  
-* "/user/register": регистрирует нового пользователя с указанным именем и возвращает присвоеный ему токен. Токен используется для аутентификации пользователя и должен быть уникален.
-```shell script
-    curl -X POST 'localhost:8080/user/register' -d '{"userName": "Sasha"}' -H "Content-Type: application/json"
-```
-    - Метод: POST   
-    - Принимает: объект вида `{"userName": <имя пользователя>}`  
-    - Возвращает: объект вида  `{"userName": <имя пользователя>, "userToken": <токен пользователя>}`. Токен должен быть строкой.
+### Required functionality
+
+### User identification
+ 
+### Returned objects
+
+Each service accepts some arguments and returns the object of the following type:
 ```json
-{"userName":"Sasha","userToken":"7b74505e-e07a-4544-b060-909956d2161c"}
+{
+  "data": <Method result> ,
+  "errorMessage": <Error message>
+}
 ```
+For example, method "Register user" (/user/register) in case of success may return the following object:
+```json
+{
+  "data": {
+    "userName": "Sasha",
+    "userToken": "7b74505e-e07a-4544-b060-909956d2161c"
+  },
+  "errorMessage": null
+}
+```
+In case of error:
+```json
+{
+  "data": null,
+  "errorMessage": "This name is already taken"
+}
+```
+
+In the description of the each service, point "Returns" describes the object which must be included in the `data` field in a successful case.
+
+### List of required services
+
+* "/clear": completely resets the state of the application (deletes all users, all flits, etc.)
+    - Method: DELETE   
+    - Accepts: nothing  
+    - Returns: anything  
+    - **Note**: this services is used by our testing system, please, implement it first.  
+   
+-----------------------------------------
+
+* "/user/register": adds new user with the specified name and assigns him a randomly generated token. 
+    - Method: POST   
+    - Accepts: object like `{"userName": <name>}`  
+    - Returns: object like  `{"userName": <name>, "userToken": <token>}`.
+    - **Note**: token must be a string
+    ```
+    curl -X POST 'localhost:8080/user/register' -d '{"userName": "Sasha"}' -H "Content-Type: application/json"
+    ```
+    ```json
+    {"userName":"Sasha","userToken":"7b74505e-e07a-4544-b060-909956d2161c"}
+    ```
+-----------------------------------------
     
-* "/user/list": возвращает список имен всех зарегистрированных пользователей.
-```shell script
-curl 'localhost:8080/user/list'
-```
-    - Метод: GET   
-    - Принимает: ничего
-    - Возвращает: список имен пользователей
-* "/flit/add": добавляет новое сообщение для пользователя с указанным токеном.
-```shell script
+* "/user/list": returns the list of names of all registered users.
+    - Method: GET   
+    - Accepts: nothing
+    - Returns: list of user names.
+    ```shell script
+    curl 'localhost:8080/user/list'
+    ```
+
+-----------------------------------------
+
+* "/flit/add": adds new flit from user with the specified token. 
+    - Method: POST   
+    - Accepts: object like `{"userToken": <token>, "content": <flits content>}`
+    - Returns: anything
+    ```shell script
     curl -X POST 'localhost:8080/flit/add' -d '{"userToken": "7b74505e-e07a-4544-b060-909956d2161c", "content": "Hello!"}' -H "Content-Type: application/json"
-```
-    - Метод: POST   
-    - Принимает: объект вида `{"userToken": <токен пользователя>, "content": <содержимое сообщения>}`
-    - Возвращает: неважно
-* "/flit/discover": возвращает фид сообшений для пользователя.
-```shell script
-    curl 'localhost:8080/flit/discover' -d '{"userToken": "7b74505e-e07a-4544-b060-909956d2161c"}'
-```
-    - Метод: GET   
-    - Принимает: объект вида `{"userName": <имя пользователя>, "userToken": <токен пользователя>}`
-    - Возвращает: список объектов вида `{"userName": <имя пользователя>, "content": <содержимое сообщения>}`
-* "/flit/list/{username}": возвращает список всех сообщений данного пользователя.
-    - Метод: GET   
-    - Принимает: параметр пути "username", представляющий имя пользователя
-    - Возвращает: список объектов вида `{"userName": <имя пользователя>, "content": <содержимое сообщения>}`
-* "/flit/list/feed/{usertoken}": возвращает список всех сообщений от тех, на кого подписан данный пользователь
-    - Метод: GET   
-    - Принимает: параметр пути "usertoken", представляющий имя пользователя
-    - Возвращает: список объектов вида `{"userName": <имя пользователя>, "content": <содержимое сообщения>}`
+    ```
+    
+-----------------------------------------
+
+* "/flit/discover": returns 10 last flits from list of all flits.  
+    - Method: GET   
+    - Accepts: nothing
+    - Returns: list of objects like `{"userName": <name>, "content": <flits content>}`
+
+-----------------------------------------
+
+* "/flit/list/{username}": returns the list of all flits of a specified user.
+    - Method: GET   
+    - Accepts: path param "username"
+    - Returns: list of objects like `{"userName": <name>, "content": <flits content>}`
+
+-----------------------------------------
+
+* "/flit/list/feed/{usertoken}": returns flit feed for specified user. 
+    - Method: GET   
+    - Accepts: path param "usertoken"
+    - Returns: list of objects like `{"userName": <name>, "content": <flits content>}`
   
-Опциональные сервисы для управления подписками:
-* "/subscribe": добавляет для пользователя с указанным токеном подписку на пользователя с указанным именем
-    - Метод: POST   
-    - Принимает: объект вида `{"subscriberToken": <токен подписчика>, "publisherName": <имя читаемого пользователя>}`  
-    - Возвращает: неважно
-* "/unsubscribe": убирает подписку
-    - Метод: POST   
-    - Принимает: объект вида `{"subscriberToken": <токен подписчика>, "publisherName": <имя читаемого пользователя>}`  
-    - Возвращает: неважно
-* "/subscribers/list/{usertoken}": возвращает список всех подписчиков пользователя
-    - Метод: GET   
-    - Принимает: параметр пути "usertoken", представляющий токен пользователя
-    - Возвращает: список имен подписчиков
-* "/publishers/list/{userToken}": возвращет список всех, на кого подписан данный пользователь
-    - Метод: GET   
-    - Принимает: параметр пути "usertoken", представляющий токен пользователя
-    - Возвращает: список всех, на кого подписан данный пользователь
+-----------------------------------------
+
+* "/subscribe": subscribes one user to another user. 
+    - Method: POST   
+    - Accepts: object like `{"subscriberToken": <subscriber token>, "publisherName": <publisher name>}`  
+    - Returns: anything
+
+-----------------------------------------
+
+* "/unsubscribe": removes subscription.
+    - Method: POST   
+    - Accepts: object like `{"subscriberToken": <subscriber token>, "publisherName": <publisher name>}`  
+    - Returns: anything
+
+-----------------------------------------
+
+* "/subscribers/list/{usertoken}": returns list names of subscribers of the specified user.
+    - Method: GET   
+    - Accepts: path param "usertoken"
+    - Returns: list names of subscribers
+
+-----------------------------------------
+
+* "/publishers/list/{userToken}": returns list names of publishers of the specified user.
+    - Method: GET   
+    - Accepts: path param "usertoken"
+    - Returns: list names of publishers

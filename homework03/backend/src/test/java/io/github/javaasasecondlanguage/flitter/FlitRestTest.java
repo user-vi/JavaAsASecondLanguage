@@ -1,8 +1,6 @@
 package io.github.javaasasecondlanguage.flitter;
 
-import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
-import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
-import io.github.javaasasecondlanguage.flitter.utils.TestConstants;
+import io.github.javaasasecondlanguage.flitter.utils.FlitterRestMethods;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +11,23 @@ import org.springframework.boot.web.server.LocalServerPort;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertMapsEqualByKeys;
+import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
+import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
+import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.CONTENT;
+import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.USER_NAME;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class FlitRestTest {
 
-    private FlitterRestWrapper rest;
+    private FlitterRestMethods rest;
 
     public FlitRestTest(
             @Autowired TestRestTemplate restTemplate,
             @LocalServerPort int port
     ) {
-        this.rest = new FlitterRestWrapper(restTemplate, port);
+        this.rest = new FlitterRestMethods(restTemplate, port);
     }
 
     @BeforeEach
@@ -34,105 +37,131 @@ public class FlitRestTest {
 
     @Test
     public void test_listAllFlits_empty() {
-        var flits = rest.discoverFlits();
+        var flits = rest.discoverFlits(EXPECT_SUCCESS);
         assertEquals(0, flits.size());
     }
 
     @Test
     public void test_addFlit_noCheck() {
-        var token = rest.addUser("Sasha");
+        var token = rest.addUser("Sasha", EXPECT_SUCCESS);
         var content = "My first flit";
 
-        rest.addFlit(token, content);
+        rest.addFlit(token, content, EXPECT_SUCCESS);
     }
 
     @Test
     public void test_addFlit_singleUser_singleFlit() {
-        var token = rest.addUser("Sasha");
+        var token = rest.addUser("Sasha", EXPECT_SUCCESS);
         var inputContent = "My first flit";
 
-        rest.addFlit(token, inputContent);
-        var flits = rest.discoverFlits();
+        rest.addFlit(token, inputContent, EXPECT_SUCCESS);
+        var flits = rest.discoverFlits(EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "My first flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
     public void test_addFlit_singleUser_multipleFlits() {
-        var token = rest.addUser("Sasha");
-        rest.addFlit(token, "My first flit");
-        rest.addFlit(token, "My second flit");
+        var token = rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addFlit(token, "My first flit", EXPECT_SUCCESS);
+        rest.addFlit(token, "My second flit", EXPECT_SUCCESS);
 
-        var flits = rest.discoverFlits();
+        var flits = rest.discoverFlits(EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "My first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "My second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
     public void test_addFlit_multipleUsers_multipleFlits() {
-        var tokenOne = rest.addUser("Sasha");
-        rest.addFlit(tokenOne, "Sasha's first flit");
-        rest.addFlit(tokenOne, "Sasha's second flit");
+        var tokenOne = rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addFlit(tokenOne, "Sasha's first flit", EXPECT_SUCCESS);
+        rest.addFlit(tokenOne, "Sasha's second flit", EXPECT_SUCCESS);
 
-        var tokenTwo = rest.addUser("Nikita");
-        rest.addFlit(tokenTwo, "Nikita's first flit");
-        rest.addFlit(tokenTwo, "Nikita's second flit");
+        var tokenTwo = rest.addUser("Nikita", EXPECT_SUCCESS);
+        rest.addFlit(tokenTwo, "Nikita's first flit", EXPECT_SUCCESS);
+        rest.addFlit(tokenTwo, "Nikita's second flit", EXPECT_SUCCESS);
 
-        var flits = rest.discoverFlits();
+        var flits = rest.discoverFlits(EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's second flit"),
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's first flit"),
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's second flit"),
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's first flit"),
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
+    }
+
+    @Test
+    void test_addFlit_unknownToken() {
+        rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addUser("Nikita", EXPECT_SUCCESS);
+
+        var token = "Unknown token";
+        var content = "Flit from unknown token";
+        rest.addFlit(token, content, EXPECT_FAIL);
     }
 
     @Test
     public void test_listFlitByUser_singleUser() {
-        var token = rest.addUser("Sasha");
-        rest.addFlit(token, "My first flit");
-        rest.addFlit(token, "My second flit");
+        var token = rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addFlit(token, "My first flit", EXPECT_SUCCESS);
+        rest.addFlit(token, "My second flit", EXPECT_SUCCESS);
 
-        var flits = rest.listFlitsByUser("Sasha");
+        var flits = rest.listFlitsByUser("Sasha", EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "My first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "My second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
     public void test_listFlitByUser_multipleUsers_multipleFlits() {
-        var tokenOne = rest.addUser("Sasha");
-        rest.addFlit(tokenOne, "Sasha's first flit");
-        rest.addFlit(tokenOne, "Sasha's second flit");
+        var tokenOne = rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addFlit(tokenOne, "Sasha's first flit", EXPECT_SUCCESS);
+        rest.addFlit(tokenOne, "Sasha's second flit", EXPECT_SUCCESS);
 
-        var tokenTwo = rest.addUser("Nikita");
-        rest.addFlit(tokenTwo, "Nikita's first flit");
-        rest.addFlit(tokenTwo, "Nikita's second flit");
+        var tokenTwo = rest.addUser("Nikita", EXPECT_SUCCESS);
+        rest.addFlit(tokenTwo, "Nikita's first flit", EXPECT_SUCCESS);
+        rest.addFlit(tokenTwo, "Nikita's second flit", EXPECT_SUCCESS);
 
-        var flitsBySasha = rest.listFlitsByUser("Sasha");
+        var flitsBySasha = rest.listFlitsByUser("Sasha", EXPECT_SUCCESS);
         List<Map<String, String>> expectedFlitsBySasha = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlitsBySasha, flitsBySasha, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlitsBySasha, flitsBySasha, USER_NAME, CONTENT);
 
-        var flitsByNikita = rest.listFlitsByUser("Nikita");
+        var flitsByNikita = rest.listFlitsByUser("Nikita", EXPECT_SUCCESS);
         var expectedFlitsByNikita = List.of(
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's first flit"),
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's second flit")
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's first flit"),
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlitsByNikita, flitsByNikita, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlitsByNikita, flitsByNikita, USER_NAME, CONTENT);
+    }
+
+    @Test
+    void test_listFlitByUser_unknownUser() {
+        var sashaToken = rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addFlit(sashaToken, "Sashas flit", EXPECT_SUCCESS);
+
+        rest.addUser("Nikita", EXPECT_SUCCESS);
+
+        var sashaFlits = rest.listFlitsByUser("Sasha", EXPECT_SUCCESS);
+        assertEquals(1, sashaFlits.size());
+
+        var nikitaFlits = rest.listFlitsByUser("Nikita", EXPECT_SUCCESS);
+        assertEquals(0, nikitaFlits.size());
+
+        rest.listFlitsByUser("UnknownUser", EXPECT_FAIL);
     }
 }

@@ -1,7 +1,6 @@
 package io.github.javaasasecondlanguage.flitter;
 
-import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
-import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
+import io.github.javaasasecondlanguage.flitter.utils.FlitterRestMethods;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,21 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertSetEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
+import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserRestTest {
 
-    private FlitterRestWrapper rest;
+    private FlitterRestMethods rest;
 
     public UserRestTest(
             @Autowired TestRestTemplate restTemplate,
             @LocalServerPort int port
     ) {
-        this.rest = new FlitterRestWrapper(restTemplate, port);
+        this.rest = new FlitterRestMethods(restTemplate, port);
     }
 
     @BeforeEach
@@ -32,34 +34,37 @@ public class UserRestTest {
 
     @Test
     public void test_listUsers_empty() {
-        var users = rest.listUsers();
+        var users = rest.listUsers(EXPECT_SUCCESS);
         assertEquals(0, users.size());
     }
 
     @Test
     public void test_addUser_noCheck() {
-        rest.addUser("Sasha");
+        rest.addUser("Sasha", EXPECT_SUCCESS);
     }
 
     @Test
     public void test_addUser_singleUser() {
-        rest.addUser("Sasha");
-        var users = rest.listUsers();
-        assertEquals(
-                List.of("Sasha"),
-                users
-        );
+        rest.addUser("Sasha", EXPECT_SUCCESS);
+        var users = rest.listUsers(EXPECT_SUCCESS);
+        assertEquals(List.of("Sasha"), users);
     }
 
     @Test
     public void test_addUser_multipleUsers() {
         var inputUsers = List.of("Sasha", "Nikita");
 
-        for (var user : inputUsers) {
-            rest.addUser(user);
-        }
+        rest.addAllUsers(inputUsers, EXPECT_SUCCESS);
+        var listedUsers = rest.listUsers(EXPECT_SUCCESS);
 
-        var listedUsers = rest.listUsers();
-        CollectionTestUtils.assertSetEquals(inputUsers, listedUsers);
+        assertSetEquals(inputUsers, listedUsers);
+    }
+
+    @Test
+    void test_addUser_sameName() {
+        rest.addUser("Sasha", EXPECT_SUCCESS);
+        rest.addUser("Sasha", EXPECT_FAIL);
+        var users = rest.listUsers(EXPECT_SUCCESS);
+        assertEquals(List.of("Sasha"), users);
     }
 }
