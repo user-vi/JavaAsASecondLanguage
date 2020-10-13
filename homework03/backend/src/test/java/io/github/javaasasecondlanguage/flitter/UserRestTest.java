@@ -1,7 +1,6 @@
 package io.github.javaasasecondlanguage.flitter;
 
-import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
-import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
+import io.github.javaasasecondlanguage.flitter.utils.FlitterRestMethods;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +10,21 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.List;
 
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertSetEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertSetEquals;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserRestTest {
 
-    private FlitterRestWrapper rest;
+    private FlitterRestMethods rest;
 
     public UserRestTest(
             @Autowired TestRestTemplate restTemplate,
             @LocalServerPort int port
     ) {
-        this.rest = new FlitterRestWrapper(restTemplate, port);
+        this.rest = new FlitterRestMethods(restTemplate, port);
     }
 
     @BeforeEach

@@ -1,41 +1,14 @@
 package io.github.javaasasecondlanguage.flitter.utils;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
-import static java.lang.String.format;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 public class CollectionTestUtils {
-
-    public static <A, B> void assertSetEquals(Collection<A> expectedCollection, Collection<B> actualCollection) {
-        assertEquals(
-                new HashSet<>(expectedCollection),
-                new HashSet<>(actualCollection)
-        );
-    }
-
-    public static <A, B> void assertMapsEqualByKeys(
-            Collection<Map<String, A>> expectedCollection,
-            Collection<Map<String, B>> actualCollection,
-            String... keys
-    ) {
-        assertEquals(
-                retainKeys(expectedCollection, keys),
-                retainKeys(actualCollection, keys)
-        );
-    }
 
     public static <A> Set<Map<String, A>> retainKeys(Collection<Map<String, A>> inputCollection, String... retainedKeys) {
         return inputCollection

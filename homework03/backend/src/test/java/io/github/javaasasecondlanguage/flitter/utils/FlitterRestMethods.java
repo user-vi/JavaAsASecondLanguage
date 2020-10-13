@@ -7,42 +7,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertNotNull;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertThatStatusIsExpected;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
-import static io.github.javaasasecondlanguage.flitter.utils.ResponseAssertionUtils.assertThatStatusIsExpected;
-import static java.lang.String.join;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class FlitterRestWrapper {
+public class FlitterRestMethods {
 
-    private final TestRestTemplate restTemplate;
-    private final int port;
+    private final LoggingRestTemplate restTemplate;
 
-    public FlitterRestWrapper(TestRestTemplate restTemplate, int port) {
-        this.restTemplate = restTemplate;
-        this.port = port;
-    }
-
-    public TestRestTemplate getRestTemplate() {
-        return restTemplate;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public String getPath(String... parts) {
-        return TestConstants.LOCALHOST + port + join("/", parts);
+    public FlitterRestMethods(TestRestTemplate restTemplate, int port) {
+        this.restTemplate = new LoggingRestTemplate(restTemplate, port);
     }
 
     public void clear() {
-        var endpoint = getPath("/clear");
-        restTemplate.delete(endpoint);
+        restTemplate.delete("/clear");
     }
 
     public List<String> listUsers(ExpectedStatus expectedStatus) {
-        var endpoint = getPath("/user/list");
-        var response = restTemplate.getForEntity(endpoint, Result.class);
+        var response = restTemplate.get("/user/list");
         assertThatStatusIsExpected(expectedStatus, response);
 
         return response
@@ -53,9 +36,8 @@ public class FlitterRestWrapper {
     public String addUser(String name,
                           ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/user/register");
         var params = Map.of(TestConstants.USER_NAME, name);
-        var response = restTemplate.postForEntity(endpoint, params, Result.class);
+        var response = restTemplate.post(params, "/user/register");
         assertThatStatusIsExpected(expectedStatus, response);
 
         if (expectedStatus == EXPECT_FAIL) {
@@ -86,18 +68,16 @@ public class FlitterRestWrapper {
                         String content,
                         ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/flit/add");
         var params = Map.of(
                 TestConstants.USER_TOKEN, token,
                 TestConstants.CONTENT, content
         );
-        var response = restTemplate.postForEntity(endpoint, params, Result.class);
+        var response = restTemplate.post(params, "/flit/add");
         assertThatStatusIsExpected(expectedStatus, response);
     }
 
     public List<Map<String, Object>> discoverFlits(ExpectedStatus expectedStatus) {
-        var endpoint = getPath("/flit/discover");
-        var response = restTemplate.getForEntity(endpoint, Result.class);
+        var response = restTemplate.get("/flit/discover");
         assertThatStatusIsExpected(expectedStatus, response);
 
         return response
@@ -108,8 +88,7 @@ public class FlitterRestWrapper {
     public List<Map<String, Object>> listFlitsByUser(String name,
                                                      ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/flit/list", name);
-        var response = restTemplate.getForEntity(endpoint, Result.class);
+        var response = restTemplate.get("/flit/list", name);
         assertThatStatusIsExpected(expectedStatus, response);
 
         return response
@@ -120,8 +99,7 @@ public class FlitterRestWrapper {
     public List<String> listSubscribers(String token,
                                         ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/subscribers/list", token);
-        var response = restTemplate.getForEntity(endpoint, Result.class);
+        var response = restTemplate.get("/subscribers/list", token);
         assertThatStatusIsExpected(expectedStatus, response);
 
         return response
@@ -132,8 +110,7 @@ public class FlitterRestWrapper {
     public List<String> listPublishers(String token,
                                        ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/publishers/list", token);
-        var response = restTemplate.getForEntity(endpoint, Result.class);
+        var response = restTemplate.get("/publishers/list", token);
         assertThatStatusIsExpected(expectedStatus, response);
 
         return response
@@ -145,12 +122,11 @@ public class FlitterRestWrapper {
                           String publisherName,
                           ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/subscribe");
         var params = Map.of(
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
         );
-        var response = restTemplate.postForEntity(endpoint, params, Result.class);
+        var response = restTemplate.post(params, "/subscribe");
         assertThatStatusIsExpected(expectedStatus, response);
     }
 
@@ -169,12 +145,11 @@ public class FlitterRestWrapper {
                             String publisherName,
                             ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/unsubscribe");
         var params = Map.of(
                 TestConstants.SUBSCRIBER_TOKEN, subscriberToken,
                 TestConstants.PUBLISHER_NAME, publisherName
         );
-        var response = restTemplate.postForEntity(endpoint, params, Result.class);
+        var response = restTemplate.post(params, "/unsubscribe");
         assertThatStatusIsExpected(expectedStatus, response);
     }
 
@@ -192,8 +167,7 @@ public class FlitterRestWrapper {
     public List<Map<String, Object>> listFlitsConsumedByUser(String token,
                                                              ExpectedStatus expectedStatus
     ) {
-        var endpoint = getPath("/flit/list/feed", token);
-        var response = restTemplate.getForEntity(endpoint, Result.class);
+        var response = restTemplate.get("/flit/list/feed", token);
         assertThatStatusIsExpected(expectedStatus, response);
 
         return response

@@ -1,7 +1,6 @@
 package io.github.javaasasecondlanguage.flitter;
 
-import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
-import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
+import io.github.javaasasecondlanguage.flitter.utils.FlitterRestMethods;
 import io.github.javaasasecondlanguage.flitter.utils.TestConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,21 +14,22 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertSetEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertMapsEqualByKeys;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertSetEquals;
+import static io.github.javaasasecondlanguage.flitter.utils.AssertionUtils.assertTrue;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SubscriptionRestTest {
 
-    private FlitterRestWrapper rest;
+    private FlitterRestMethods rest;
 
     public SubscriptionRestTest(
             @Autowired TestRestTemplate restTemplate,
             @LocalServerPort int port
     ) {
-        this.rest = new FlitterRestWrapper(restTemplate, port);
+        this.rest = new FlitterRestMethods(restTemplate, port);
     }
 
     @BeforeEach
@@ -213,7 +213,7 @@ public class SubscriptionRestTest {
         }
 
         var flitsFromFeed = rest.listFlitsConsumedByUser(subscriberToken, EXPECT_SUCCESS);
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flitsFromFeed, TestConstants.USER_NAME, TestConstants.USER_TOKEN);
+        assertMapsEqualByKeys(expectedFlits, flitsFromFeed, TestConstants.USER_NAME, TestConstants.USER_TOKEN);
     }
 
 
