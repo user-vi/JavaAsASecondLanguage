@@ -1,9 +1,6 @@
 package io.github.javaasasecondlanguage.flitter;
 
-import io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils;
-import io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus;
 import io.github.javaasasecondlanguage.flitter.utils.FlitterRestWrapper;
-import io.github.javaasasecondlanguage.flitter.utils.TestConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +11,11 @@ import org.springframework.boot.web.server.LocalServerPort;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertMapsEqualByKeys;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
+import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.CONTENT;
+import static io.github.javaasasecondlanguage.flitter.utils.TestConstants.USER_NAME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -58,9 +58,9 @@ public class FlitRestTest {
         var flits = rest.discoverFlits(EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "My first flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
@@ -72,10 +72,10 @@ public class FlitRestTest {
         var flits = rest.discoverFlits(EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "My first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "My second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
@@ -91,12 +91,12 @@ public class FlitRestTest {
         var flits = rest.discoverFlits(EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's second flit"),
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's first flit"),
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's second flit"),
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's first flit"),
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
@@ -118,10 +118,10 @@ public class FlitRestTest {
         var flits = rest.listFlitsByUser("Sasha", EXPECT_SUCCESS);
 
         var expectedFlits = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "My second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "My first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "My second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlits, flits, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlits, flits, USER_NAME, CONTENT);
     }
 
     @Test
@@ -136,17 +136,17 @@ public class FlitRestTest {
 
         var flitsBySasha = rest.listFlitsByUser("Sasha", EXPECT_SUCCESS);
         List<Map<String, String>> expectedFlitsBySasha = List.of(
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's first flit"),
-                Map.of(TestConstants.USER_NAME, "Sasha", TestConstants.CONTENT, "Sasha's second flit")
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's first flit"),
+                Map.of(USER_NAME, "Sasha", CONTENT, "Sasha's second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlitsBySasha, flitsBySasha, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlitsBySasha, flitsBySasha, USER_NAME, CONTENT);
 
         var flitsByNikita = rest.listFlitsByUser("Nikita", EXPECT_SUCCESS);
         var expectedFlitsByNikita = List.of(
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's first flit"),
-                Map.of(TestConstants.USER_NAME, "Nikita", TestConstants.CONTENT, "Nikita's second flit")
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's first flit"),
+                Map.of(USER_NAME, "Nikita", CONTENT, "Nikita's second flit")
         );
-        CollectionTestUtils.assertMapsEqualByKeys(expectedFlitsByNikita, flitsByNikita, TestConstants.USER_NAME, TestConstants.CONTENT);
+        assertMapsEqualByKeys(expectedFlitsByNikita, flitsByNikita, USER_NAME, CONTENT);
     }
 
     @Test

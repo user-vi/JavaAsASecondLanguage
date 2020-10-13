@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static io.github.javaasasecondlanguage.flitter.utils.CollectionTestUtils.assertSetEquals;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_FAIL;
 import static io.github.javaasasecondlanguage.flitter.utils.ExpectedStatus.EXPECT_SUCCESS;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -70,22 +71,22 @@ public class SubscriptionRestTest {
 
         rest.subscribe(sashaToken, "Nikita", EXPECT_SUCCESS);
 
-        CollectionTestUtils.assertSetEquals(
+        assertSetEquals(
                 List.of("Nikita"),
                 rest.listPublishers(sashaToken, EXPECT_SUCCESS)
         );
-        CollectionTestUtils.assertSetEquals(
+        assertSetEquals(
                 List.of("Sasha"),
                 rest.listSubscribers(nikitaToken, EXPECT_SUCCESS)
         );
 
         rest.unsubscribe(sashaToken, "Nikita", EXPECT_SUCCESS);
 
-        CollectionTestUtils.assertSetEquals(
+        assertSetEquals(
                 Collections.emptyList(),
                 rest.listPublishers(sashaToken, EXPECT_SUCCESS)
         );
-        CollectionTestUtils.assertSetEquals(
+        assertSetEquals(
                 Collections.emptyList(),
                 rest.listSubscribers(nikitaToken, EXPECT_SUCCESS)
         );
@@ -103,12 +104,12 @@ public class SubscriptionRestTest {
         rest.subscribeAll(subscriberTokens, List.of("Pub"), EXPECT_SUCCESS);
 
         for (String subscriberToken : subscriberTokens) {
-            CollectionTestUtils.assertSetEquals(
+            assertSetEquals(
                     List.of("Pub"),
                     rest.listPublishers(subscriberToken, EXPECT_SUCCESS)
             );
         }
-        CollectionTestUtils.assertSetEquals(
+        assertSetEquals(
                 subscriberNames,
                 rest.listSubscribers(publisherToken, EXPECT_SUCCESS)
         );
@@ -116,12 +117,12 @@ public class SubscriptionRestTest {
         rest.unsubscribeAll(subscriberTokens, List.of("Pub"), EXPECT_SUCCESS);
 
         for (String subscriberToken : subscriberTokens) {
-            CollectionTestUtils.assertSetEquals(
+            assertSetEquals(
                     Collections.emptyList(),
                     rest.listPublishers(subscriberToken, EXPECT_SUCCESS)
             );
         }
-        CollectionTestUtils.assertSetEquals(
+        assertSetEquals(
                 Collections.emptyList(),
                 rest.listSubscribers(publisherToken, EXPECT_SUCCESS)
         );
@@ -144,13 +145,13 @@ public class SubscriptionRestTest {
         rest.subscribeAll(subscriberTokens, publisherNames, EXPECT_SUCCESS);
 
         for (String subscriberToken : subscriberTokens) {
-            CollectionTestUtils.assertSetEquals(
+            assertSetEquals(
                     publisherNames,
                     rest.listPublishers(subscriberToken, EXPECT_SUCCESS)
             );
         }
         for (String publisherToken : publisherTokens) {
-            CollectionTestUtils.assertSetEquals(
+            assertSetEquals(
                     subscriberNames,
                     rest.listSubscribers(publisherToken, EXPECT_SUCCESS)
             );
@@ -159,13 +160,13 @@ public class SubscriptionRestTest {
         rest.unsubscribeAll(subscriberTokens, publisherNames, EXPECT_SUCCESS);
 
         for (String publisherToken : publisherTokens) {
-            CollectionTestUtils.assertSetEquals(
+            assertSetEquals(
                     Collections.emptyList(),
                     rest.listSubscribers(publisherToken, EXPECT_SUCCESS)
             );
         }
         for (String subscriberToken : subscriberTokens) {
-            CollectionTestUtils.assertSetEquals(
+            assertSetEquals(
                     Collections.emptyList(),
                     rest.listPublishers(subscriberToken, EXPECT_SUCCESS)
             );
