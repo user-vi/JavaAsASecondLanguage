@@ -1,11 +1,19 @@
 # Flitter web service
 
-You need to implement several REST services.
+Flitter is a messenger, where you can send flits. You need to implement Back-end for Flitter.
 
 ### Required functionality
+- User authorization
+- Post flits
+- Discover flits - show flits from other users
+- View flits from other user
+- Subscribe to other users
+- Watch user subscribers
+- View my personal flit feed
 
 ### User identification
- 
+User registers with name and receives unique token. This token can be used to authenticate user in other APIs.
+
 ### Returned objects
 
 Each service accepts some arguments and returns the object of the following type:
@@ -33,7 +41,7 @@ In case of error:
 }
 ```
 
-In the description of the each service, point "Returns" describes the object which must be included in the `data` field in a successful case.
+In the description of each service, point "Returns" describes the object which must be included in the `data` field in a successful case.
 
 ### List of required services
 
@@ -41,7 +49,7 @@ In the description of the each service, point "Returns" describes the object whi
     - Method: DELETE   
     - Accepts: nothing  
     - Returns: anything  
-    - **Note**: this services is used by our testing system, please, implement it first.  
+    - **Note**: this service is used by our testing system, please, implement it first.  
    
 -----------------------------------------
 
@@ -53,8 +61,21 @@ In the description of the each service, point "Returns" describes the object whi
     ```
     curl -X POST 'localhost:8080/user/register' -d '{"userName": "Sasha"}' -H "Content-Type: application/json"
     ```
+  - Successful result:
     ```json
-    {"userName":"Sasha","userToken":"7b74505e-e07a-4544-b060-909956d2161c"}
+    {
+      "data":{
+        "userName":"Sasha",
+        "userToken":"7b74505e-e07a-4544-b060-909956d2161c"
+      }
+    }
+    ```
+  - Error:
+    ```json
+    {
+      "data": null,
+      "errorMessage": "This name is already taken"
+    }
     ```
 -----------------------------------------
     
