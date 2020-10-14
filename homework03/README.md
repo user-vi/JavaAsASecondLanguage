@@ -65,7 +65,7 @@ curl -X DELETE 'localhost:8080/clear'
 ```
 curl -X POST 'localhost:8080/user/register' -d '{"userName": "sasha"}' -H "Content-Type: application/json"
 ```
-  - Successful result:
+Successful result:
 ```json
 {
   "data":{
@@ -74,7 +74,7 @@ curl -X POST 'localhost:8080/user/register' -d '{"userName": "sasha"}' -H "Conte
   }
 }
 ```
-  - Error:
+Error:
 ```json
 {
   "data": null,
@@ -90,7 +90,7 @@ curl -X POST 'localhost:8080/user/register' -d '{"userName": "sasha"}' -H "Conte
 ```shell script
 curl 'localhost:8080/user/list'
 ```
-  - Successful result:
+Successful result:
 ```json
 {
   "data":["sasha","sergey"]
@@ -115,7 +115,7 @@ curl -X POST 'localhost:8080/flit/add' -d '{"userToken": "7b74505e-e07a-4544-b06
 ```shell script
 curl 'localhost:8080/flit/discover'
 ```
-  - Successful result:
+Successful result:
 ```json
 {
   "data":[{"userName":"sasha","content":"I like Java!"},{"userName":"sergey","content":"I like Python!"}]
@@ -130,13 +130,13 @@ curl 'localhost:8080/flit/discover'
 ```shell script
 curl 'localhost:8080/flit/list/sasha'
 ```
-  - Successful result:
+Successful result:
 ```json
 {
   "data":[{"userName":"sasha","content":"I like Java!"}]
 }
 ```
-  - Error:
+Error:
 ```json
 {
   "data": null,
@@ -154,13 +154,13 @@ curl 'localhost:8080/flit/list/sasha'
 curl 'localhost:8080/flit/list/feed/7b74505e-e07a-4544-b060-909956d2161c'
 ```
 
-  - Successful result:
+Successful result:
 ```json
 {
   "data":[{"userName":"sergey","content":"I like Python!"}]
 }
 ```
-  - Error:
+Error:
 ```json
 {
   "data": null,
@@ -177,7 +177,7 @@ curl 'localhost:8080/flit/list/feed/7b74505e-e07a-4544-b060-909956d2161c'
 curl -X POST 'localhost:8080/subscribe' -d '{"subscriberToken": "7b74505e-e07a-4544-b060-909956d2161c", "publisherName": "sergey"}' -H "Content-Type: application/json"
 ```
 
-  - Error:
+Error:
 ```json
 {
   "data": null,
@@ -193,7 +193,7 @@ curl -X POST 'localhost:8080/subscribe' -d '{"subscriberToken": "7b74505e-e07a-4
 ```shell script
 curl -X POST 'localhost:8080/unsubscribe' -d '{"subscriberToken": "7b74505e-e07a-4544-b060-909956d2161c", "publisherName": "sergey"}' -H "Content-Type: application/json"
 ```
-  - Error:
+Error:
 ```json
 {
   "data": null,
@@ -209,13 +209,13 @@ curl -X POST 'localhost:8080/unsubscribe' -d '{"subscriberToken": "7b74505e-e07a
 ```shell script
 curl 'localhost:8080/subscribers/list/7b74505e-e07a-4544-b060-909956d2161c'
 ```
-  - Successful result:
+Successful result:
 ```json
 {
   "data":["sergey"]
 }
 ```
-  - Error:
+Error:
 ```json
 {
   "data": null,
@@ -231,13 +231,13 @@ curl 'localhost:8080/subscribers/list/7b74505e-e07a-4544-b060-909956d2161c'
 ```shell script
 curl 'localhost:8080/publishers/list/7b74505e-e07a-4544-b060-909956d2161c'
 ```
-  - Successful result:
+Successful result:
 ```json
 {
   "data":["sasha"]
 }
 ```
-  - Error:
+Error:
 ```json
 {
   "data": null,
