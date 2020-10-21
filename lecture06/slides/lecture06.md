@@ -7,10 +7,27 @@
 
 - Practice - Dynamic Proxy
 - Live coding - Annotation Processors 
+- Threads
 - Practice 1, 2, 3
 - Live coding - Spring DI
-- Into to Homework 3
+- Homework 3
 
+---
+## What is Thread?
+
+---
+## Concurrency vs parallelism
+**Concurrency** - contention on shared resources (memory, shared state)  
+**Parallelism** - is possible without concurrency  
+
+---
+## practice01: Thread creation and termination
+
+---
+## practice02: DDOS the Chat
+
+---
+## practice03: Hacker News feed
 
 ---
 ## TIL
