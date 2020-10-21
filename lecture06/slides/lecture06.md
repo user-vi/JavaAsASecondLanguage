@@ -1,6 +1,6 @@
 ## Java As A Second Language
 ### Lecture 06
-### Annotation Processors, Basic Concurrency 
+### Annotation Processors, Threads
 
 ---
 ## Agenda
