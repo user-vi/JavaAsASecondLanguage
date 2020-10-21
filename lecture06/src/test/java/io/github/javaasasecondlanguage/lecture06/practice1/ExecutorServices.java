@@ -13,10 +13,22 @@ public class ExecutorServices {
         ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         Future<Boolean> success = executor.submit(() -> {
             System.out.println("Hello from [" + Thread.currentThread().getName() + "]");
-            Thread.sleep(2000);
+            Thread.sleep(10000);
             return true;
         });
         Boolean result = success.get();
         System.out.println("Main thread [" + Thread.currentThread().getName() + "] received result " + result);
+    }
+
+    /**
+     * Get latest topic
+     * https://hacker-news.firebaseio.com/v0/maxitem.json
+     *
+     * Get item data
+     * https://hacker-news.firebaseio.com/v0/item/126809.json
+     */
+    @Test
+    void getLatestHackerNewsTopic(){
+        throw new RuntimeException("Not Implemented");
     }
 }
