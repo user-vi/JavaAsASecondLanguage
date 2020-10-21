@@ -1,21 +1,25 @@
 package io.github.javaasasecondlanguage.flitter.user;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class User {
-    private String username;
+
+    private UserName username;
     private String userToken;
 
     public String getUsername() {
-        return username;
+        return username.getUserName();
     }
 
     public String getUserToken() {
         return userToken;
     }
 
-    public User(String username) {
+    public User(UserName username) {
         this.username = username;
         this.userToken = UUID.randomUUID().toString();
     }
+
 }

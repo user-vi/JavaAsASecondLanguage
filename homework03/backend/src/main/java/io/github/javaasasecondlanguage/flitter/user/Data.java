@@ -10,6 +10,7 @@ public class Data {
 
     public Data() {
     }
+
     public Data(User user) {
         this.user = user;
     }
