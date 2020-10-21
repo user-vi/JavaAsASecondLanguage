@@ -20,8 +20,6 @@
 **Concurrency** - contention on shared resources (memory, shared state)  
 **Parallelism** - is possible without concurrency  
 
-## Threading in Java
-
 ---
 ## practice01: Thread creation and termination
 
