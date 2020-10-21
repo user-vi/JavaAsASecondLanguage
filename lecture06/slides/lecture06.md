@@ -20,8 +20,13 @@
 **Concurrency** - contention on shared resources (memory, shared state)  
 **Parallelism** - is possible without concurrency  
 
+## Threading in Java
+
 ---
 ## practice01: Thread creation and termination
+
+---
+## ExecutorService and Future
 
 ---
 ## practice02: DDOS the Chat
@@ -35,4 +40,5 @@
 - Reflection
 - Dynamic Proxy 
 - Spring DI
+- Basic threading
 - Homework 3 
