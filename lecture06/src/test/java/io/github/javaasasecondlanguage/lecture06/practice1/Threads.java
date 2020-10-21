@@ -20,7 +20,7 @@ public class Threads {
         System.out.println("Main thread [" + Thread.currentThread().getName() + "] after join");
     }
 
-    @Test
+    @Test()
     void stop() throws InterruptedException {
         var t = new Thread(() ->
         {

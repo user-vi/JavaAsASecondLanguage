@@ -2,10 +2,7 @@ package io.github.javaasasecondlanguage.lecture06.practice1;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class ExecutorServices {
     @Test
@@ -18,17 +15,5 @@ public class ExecutorServices {
         });
         Boolean result = success.get();
         System.out.println("Main thread [" + Thread.currentThread().getName() + "] received result " + result);
-    }
-
-    /**
-     * Get latest topic
-     * https://hacker-news.firebaseio.com/v0/maxitem.json
-     *
-     * Get item data
-     * https://hacker-news.firebaseio.com/v0/item/126809.json
-     */
-    @Test
-    void getLatestHackerNewsTopic(){
-        throw new RuntimeException("Not Implemented");
     }
 }
