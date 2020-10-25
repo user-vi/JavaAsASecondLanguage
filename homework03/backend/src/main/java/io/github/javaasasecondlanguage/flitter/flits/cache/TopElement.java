@@ -7,6 +7,14 @@ public class TopElement {
     public TopElement() {
     }
 
+    @Override
+    public String toString() {
+        return "TopElement{" +
+                "userName='" + userName + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
+
     public TopElement(String userName, String content) {
         this.userName = userName;
         this.content = content;

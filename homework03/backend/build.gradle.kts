@@ -22,6 +22,9 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     runtimeOnly(files("../frontend-1.0-SNAPSHOT.jar"))
+    testImplementation("org.apache.commons:commons-lang3:3.11")
+    implementation("org.apache.commons:commons-collections4:4.0")
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
 }
 
 tasks.test {

@@ -28,16 +28,15 @@ public class FlitService {
         String userName = userService.getUserByToken(userToken);
         if (userName != null) {
             Flit flit = new Flit(content, userToken);
-            String flitToken = flit.getFlitToken();
-//            flitsArray.add(flitToken);
-            topFlits.add(userName, new TopElement(userName, content));
+            topFlits.add(new TopElement(userName, content));
 
-            List<Flit> flitsOfUser = userFlit.get(userToken);
-            if (flitsOfUser != null ){
-                flitsOfUser.add(flit);
-            }else{
-                userFlit.put(userToken, Arrays.asList(flit));
-            }
+//            List<Flit> flitsOfUser = userFlit.get(userToken);
+//            if ()
+//            if (flitsOfUser != null ){
+//                flitsOfUser.add(flit);
+//            }else{
+//                userFlit.put(userToken, Arrays.asList(flit));
+//            }
 //            flits.put(flitToken, content);
 //            flitUser.put(flitToken, userToken);
 //
@@ -56,6 +55,11 @@ public class FlitService {
 //    Set<String> userFlitList (String userName) {
 //
 //    }
+
+    public void clear() {
+        topFlits.clear();
+        userFlit.clear();
+    }
 
 
 }

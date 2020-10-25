@@ -1,5 +1,6 @@
 package io.github.javaasasecondlanguage.flitter.controller;
 
+import io.github.javaasasecondlanguage.flitter.services.FlitService;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -7,22 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-public class SampleController {
+public class RootController {
 
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FlitService flitService;
+
     private Map<String, String> subscribes = new HashMap<>();
 
-//    @GetMapping("/greeting")
-//    String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-//        System.out.println("Invoked greeting: " + name);
-//        return "Hello " + name;
-//    }
 
     @DeleteMapping("/clear")
     void delete() {
         userService.clear();
+        flitService.clear();
     }
 
     @PostMapping("/subscribe")

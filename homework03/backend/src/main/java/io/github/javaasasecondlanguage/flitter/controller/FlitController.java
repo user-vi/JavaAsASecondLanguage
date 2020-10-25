@@ -19,7 +19,8 @@ public class FlitController {
 
     @PostMapping("/flit/add")
     ResponseEntity<?> addFlit(@RequestBody AddFLitRequest addFLitRequest) {
-        if(flitService.add(addFLitRequest.getUserToken(), addFLitRequest.getContent()) == FlitRegistrationResult.SUCCESS)
+        FlitRegistrationResult addingResult = flitService.add(addFLitRequest.getUserToken(), addFLitRequest.getContent());
+        if(addingResult == FlitRegistrationResult.SUCCESS)
             return new ResponseEntity<>(new Result("success", null), HttpStatus.OK);
         else
             return new ResponseEntity<>(new Result("fail", "Some error"), HttpStatus.INTERNAL_SERVER_ERROR);
