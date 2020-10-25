@@ -1,25 +1,23 @@
 package io.github.javaasasecondlanguage.flitter.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.javaasasecondlanguage.flitter.user.User;
 
-public class DataRegister {
+public class UserRegistrationResult {
 
     @JsonProperty("data")
     private User user;
+    private String errorMessage;
 
-    public DataRegister() {
-    }
-
-    public DataRegister(User user) {
+    public UserRegistrationResult(User user, String errorMessage) {
         this.user = user;
+        this.errorMessage = errorMessage;
     }
 
     public User getUser() {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

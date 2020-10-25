@@ -1,15 +1,14 @@
 package io.github.javaasasecondlanguage.flitter.controller;
 
+import io.github.javaasasecondlanguage.flitter.services.UserAlreadyExistsException;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
-import io.github.javaasasecondlanguage.flitter.user.DataRegister;
 import io.github.javaasasecondlanguage.flitter.user.DataUserList;
-import io.github.javaasasecondlanguage.flitter.user.User;
 import io.github.javaasasecondlanguage.flitter.user.UserName;
+import io.github.javaasasecondlanguage.flitter.user.UserRegistrationResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -18,9 +17,13 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/register")
-    DataRegister register(@RequestBody UserName userName) {
-        User user = userService.register(userName.getUserName());
-        return new DataRegister(user);
+    ResponseEntity<?> register(@RequestBody UserName userName) {
+        UserRegistrationResult userRegistrationEvent = userService.register(userName.getUserName());
+        if(userRegistrationEvent.getErrorMessage() == null)
+            return new ResponseEntity<>(userRegistrationEvent, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(userRegistrationEvent, HttpStatus.INTERNAL_SERVER_ERROR);
+//        return userService.register(userName.getUserName());
     }
 
     @GetMapping("/user/list")

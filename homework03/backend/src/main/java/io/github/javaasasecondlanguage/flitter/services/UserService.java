@@ -1,7 +1,7 @@
 package io.github.javaasasecondlanguage.flitter.services;
 
-import io.github.javaasasecondlanguage.flitter.user.DataRegister;
 import io.github.javaasasecondlanguage.flitter.user.User;
+import io.github.javaasasecondlanguage.flitter.user.UserRegistrationResult;
 
 import java.util.*;
 
@@ -15,10 +15,15 @@ public class UserService {
         users.clear();
     }
 
-    public User register(String userName){
-        User user = new User(userName);
-        users.put(user.getUserToken(), user.getUsername());
-        return user;
+    public UserRegistrationResult register(String userName){
+        if (users.containsValue(userName)){
+//            throw new UserAlreadyExistsException();
+            return new UserRegistrationResult(null,"This name is already taken");
+        } else {
+            User user = new User(userName);
+            users.put(user.getUserToken(), user.getUserName());
+            return new UserRegistrationResult(user, null);
+        }
     }
 
     public List<String> list(){

@@ -9,13 +9,13 @@ import java.util.Map;
 public class DataUserList {
 
     @JsonProperty("data")
-    private Map<String, String> users;
+    private List<String> users;
 
     public DataUserList() {
     }
 
-    public DataUserList(List<String> list) {
-        users = users;
+    public DataUserList(List<String> users) {
+        this.users = users;
     }
 
 }
