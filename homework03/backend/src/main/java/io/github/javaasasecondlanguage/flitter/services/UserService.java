@@ -17,7 +17,6 @@ public class UserService {
 
     public UserRegistrationResult register(String userName){
         if (users.containsValue(userName)){
-//            throw new UserAlreadyExistsException();
             return new UserRegistrationResult(null,"This name is already taken");
         } else {
             User user = new User(userName);

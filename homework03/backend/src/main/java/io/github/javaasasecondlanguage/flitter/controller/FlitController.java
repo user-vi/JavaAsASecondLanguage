@@ -1,7 +1,12 @@
 package io.github.javaasasecondlanguage.flitter.controller;
 
+import io.github.javaasasecondlanguage.flitter.flits.AddFLitRequest;
+import io.github.javaasasecondlanguage.flitter.flits.FlitRegistrationResult;
+import io.github.javaasasecondlanguage.flitter.flits.ResultFlit;
 import io.github.javaasasecondlanguage.flitter.services.FlitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -13,12 +18,15 @@ public class FlitController {
     private FlitService flitService;
 
     @PostMapping("/flit/add")
-    void addFlit(@RequestBody String userToken, String content) {
-        flitService.add(userToken, content);
+    ResponseEntity<?> addFlit(@RequestBody AddFLitRequest addFLitRequest) {
+        if(flitService.add(addFLitRequest.getUserToken(), addFLitRequest.getContent()) == FlitRegistrationResult.SUCCESS)
+            return new ResponseEntity<>(new Result("success", null), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(new Result("fail", "Some error"), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/flit/discover")
-    Map<String, String> discoverFlit() {
+    Result discoverFlit() {
         return flitService.discoverFlits();
     }
 
