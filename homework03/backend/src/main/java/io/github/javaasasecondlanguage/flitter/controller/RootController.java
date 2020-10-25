@@ -2,6 +2,7 @@ package io.github.javaasasecondlanguage.flitter.controller;
 
 import io.github.javaasasecondlanguage.flitter.flits.FlitService;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
+import io.github.javaasasecondlanguage.flitter.subscribers.SubscribeRequest;
 import io.github.javaasasecondlanguage.flitter.subscribers.SubscribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,8 @@ public class RootController {
 
 
     @PostMapping("/subscribe")
-    public ResponseEntity<?> subscribe(@RequestBody String subscriberToken, String publisherName) {
-        Result result = subscribeService.subscribe(subscriberToken, publisherName);
+    public ResponseEntity<?> subscribe(@RequestBody SubscribeRequest subscribeRequest) {
+        Result result = subscribeService.subscribe(subscribeRequest.getSubscriberToken(), subscribeRequest.getPublisherName());
         if (result.getErrorMessage() == null)
             return new ResponseEntity<>(result, HttpStatus.OK);
         else
@@ -36,13 +37,17 @@ public class RootController {
     }
 
     @PostMapping("/unsubscribe")
-    void unsubscribe(@RequestBody String subscriberToken, String publisherName) {
-        subscribes.remove(subscriberToken, publisherName);
+    ResponseEntity<?> unsubscribe(@RequestBody SubscribeRequest subscribeRequest) {
+        Result result = subscribeService.unsubscribe(subscribeRequest.getSubscriberToken(), subscribeRequest.getPublisherName());
+        if (result.getErrorMessage() == null)
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/subscribers/list/{userToken}")
     ResponseEntity<?> userSubscribersList(@PathVariable("userToken") String userToken) {
-        Result result = subscribeService.list(userToken);
+        Result result = subscribeService.subscribers(userToken);
         if (result.getErrorMessage() == null)
             return new ResponseEntity<>(result, HttpStatus.OK);
         else
@@ -50,15 +55,12 @@ public class RootController {
     }
 
     @GetMapping("/publishers/list/{userToken}")
-    Set<String> userTokenPublishersList(@PathVariable String userToken) {
-
-        Set<String> publishers = Collections.<String>emptySet();
-        for (Map.Entry<String, String> entry : subscribes.entrySet()) {
-            if (Objects.equals(userToken, entry.getValue())) {
-                publishers.add(entry.getKey());
-            }
-        }
-        return publishers;
+    ResponseEntity<?> userTokenPublishersList(@PathVariable String userToken) {
+        Result result = subscribeService.publisers(userToken);
+        if (result.getErrorMessage() == null)
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        else
+            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

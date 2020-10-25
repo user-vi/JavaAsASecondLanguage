@@ -2,18 +2,18 @@ package io.github.javaasasecondlanguage.flitter.subscribers;
 
 public class Subscribe {
     private String subscribeToken;
-    private String publisherToken;
+    private String publisherName;
 
     public Subscribe(String subscribeToken, String publisherToken) {
         this.subscribeToken = subscribeToken;
-        this.publisherToken = publisherToken;
+        this.publisherName = publisherToken;
     }
 
     public String getSubscribeToken() {
         return subscribeToken;
     }
 
-    public String getPublisherToken() {
-        return publisherToken;
+    public String getPublisherName() {
+        return publisherName;
     }
 }
