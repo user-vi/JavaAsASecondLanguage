@@ -1,6 +1,6 @@
 package io.github.javaasasecondlanguage.flitter.controller;
 
-import io.github.javaasasecondlanguage.flitter.services.FlitService;
+import io.github.javaasasecondlanguage.flitter.flits.FlitService;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

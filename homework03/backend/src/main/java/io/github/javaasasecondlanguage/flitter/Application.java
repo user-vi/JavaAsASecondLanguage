@@ -1,6 +1,6 @@
 package io.github.javaasasecondlanguage.flitter;
 
-import io.github.javaasasecondlanguage.flitter.services.FlitService;
+import io.github.javaasasecondlanguage.flitter.flits.FlitService;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

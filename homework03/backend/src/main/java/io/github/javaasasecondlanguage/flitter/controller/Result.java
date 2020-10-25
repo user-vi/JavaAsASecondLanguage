@@ -15,4 +15,12 @@ public class Result {
         this.data = data;
         this.errorMessage = errorMessage;
     }
+
+    public Object getData() {
+        return data;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

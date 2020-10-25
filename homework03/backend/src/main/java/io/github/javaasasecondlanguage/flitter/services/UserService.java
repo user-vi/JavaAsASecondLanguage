@@ -8,16 +8,17 @@ import java.util.*;
 public class UserService {
     private Map<String, String> users = new HashMap<>();
 
-    public String getUserByToken(String token){
+    public String getUserByToken(String token) {
         return users.get(token);
     }
-    public void clear(){
+
+    public void clear() {
         users.clear();
     }
 
-    public UserRegistrationResult register(String userName){
-        if (users.containsValue(userName)){
-            return new UserRegistrationResult(null,"This name is already taken");
+    public UserRegistrationResult register(String userName) {
+        if (users.containsValue(userName)) {
+            return new UserRegistrationResult(null, "This name is already taken");
         } else {
             User user = new User(userName);
             users.put(user.getUserToken(), user.getUserName());
@@ -25,7 +26,13 @@ public class UserService {
         }
     }
 
-    public List<String> list(){
+    public boolean isUserNameRegistered(String userName) {
+        if (users.containsValue(userName)) {
+            return true;
+        } else return false;
+    }
+
+    public List<String> list() {
         return new ArrayList<>(users.values());
     }
 }
