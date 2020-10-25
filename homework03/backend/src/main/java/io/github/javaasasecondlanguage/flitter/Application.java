@@ -15,8 +15,8 @@ public class Application {
     }
 
     @Bean
-    public FlitService getFlitService(UserService userService){
-        return new FlitService(userService);
+    public FlitService getFlitService(UserService userService, SubscribeService subscribeService){
+        return new FlitService(userService, subscribeService);
     }
 
     @Bean

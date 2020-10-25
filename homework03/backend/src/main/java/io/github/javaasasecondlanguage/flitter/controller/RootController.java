@@ -56,13 +56,11 @@ public class RootController {
 
     @GetMapping("/publishers/list/{userToken}")
     ResponseEntity<?> userTokenPublishersList(@PathVariable String userToken) {
-        Result result = subscribeService.publisers(userToken);
-        if (result.getErrorMessage() == null)
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        else
-            return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
+        if (userService.isUserTokenRegistered(userToken)) {
+            return new ResponseEntity<>(new Result(subscribeService.publisers(userToken), null), HttpStatus.OK);
+        } else
+            return new ResponseEntity<>(new Result(null,"User not found" ), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
 
     @DeleteMapping("/clear")

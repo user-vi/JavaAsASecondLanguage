@@ -29,25 +29,21 @@ public class SubscribeService {
             subscribesList.removeIf(subscribe ->
                     subscribe.getSubscribeToken().equals(subscribeToken) &&
                             subscribe.getPublisherName().equals(publisherName)
-                );
+            );
             return new Result(null, null);
         } else {
             return new Result(null, "User not found");
         }
     }
 
-    public Result publisers(String userToken) {
-        if (userService.isUserTokenRegistered(userToken)) {
-            List<String> publishersOfCurrentSubscriber = new ArrayList<>();
-            for (Subscribe subscribe : subscribesList) {
-                if (subscribe.getSubscribeToken().equals(userToken)) {
-                    publishersOfCurrentSubscriber.add(subscribe.getPublisherName());
-                }
+    public List<String> publisers(String userToken) {
+        List<String> publishersOfCurrentSubscriber = new ArrayList<>();
+        for (Subscribe subscribe : subscribesList) {
+            if (subscribe.getSubscribeToken().equals(userToken)) {
+                publishersOfCurrentSubscriber.add(subscribe.getPublisherName());
             }
-            return new Result(publishersOfCurrentSubscriber, null);
-        } else {
-            return new Result(null, "User does not registered");
         }
+        return publishersOfCurrentSubscriber;
     }
 
     public Result subscribers(String publisherToken) {

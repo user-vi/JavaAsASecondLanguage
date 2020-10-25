@@ -6,6 +6,7 @@ import io.github.javaasasecondlanguage.flitter.flits.cache.FlitCache;
 import io.github.javaasasecondlanguage.flitter.flits.FlitRegistrationResult;
 import io.github.javaasasecondlanguage.flitter.flits.cache.TopElement;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
+import io.github.javaasasecondlanguage.flitter.subscribers.SubscribeService;
 
 import java.util.*;
 
@@ -16,13 +17,14 @@ public class FlitService {
     private FlitCache topFlits = new FlitCache(10);
 
     private UserService userService;
+
+    private SubscribeService subscribeService;
     List<FullFlit> allFLits = new ArrayList<>();
 
 
-
-
-    public FlitService(UserService userService) {
+    public FlitService(UserService userService, SubscribeService subscribeService) {
         this.userService = userService;
+        this.subscribeService = subscribeService;
     }
 
     public FlitRegistrationResult add(String userToken, String content) {
@@ -44,26 +46,28 @@ public class FlitService {
     }
 
 
-    public Result getByUserName(String username) {
-        if (userService.isUserNameRegistered(username)) {
-            List<FlitWithUserName> list = new ArrayList<>();
-            for (FullFlit flit : allFLits) {
-                if (flit.getUserName().equals(username)) {
-                    list.add(new FlitWithUserName(username, flit.getFlitContent()));
-                }
+    public List<FlitWithUserName> flintsOfUser(String username) {
+        List<FlitWithUserName> list = new ArrayList<>();
+        for (FullFlit flit : allFLits) {
+            if (flit.getUserName().equals(username)) {
+                list.add(new FlitWithUserName(username, flit.getFlitContent()));
             }
-            return new Result(list, null);
-        } else{
-            return new Result(null, "User does not registered");
         }
+        return list;
+    }
 
+
+    public List<FlitWithUserName> getUserFeed(String userToken) {
+        subscribeService.publisers(userToken);
+        //get publishers id
+        //get publishers flints
+        return null;
     }
 
     public void clear() {
         topFlits.clear();
         allFLits.clear();
     }
-
 }
 
 
