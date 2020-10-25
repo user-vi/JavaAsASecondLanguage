@@ -1,9 +1,7 @@
 package io.github.javaasasecondlanguage.flitter.flits;
 
 import io.github.javaasasecondlanguage.flitter.controller.Result;
-import io.github.javaasasecondlanguage.flitter.flits.Flit;
 import io.github.javaasasecondlanguage.flitter.flits.cache.FlitCache;
-import io.github.javaasasecondlanguage.flitter.flits.FlitRegistrationResult;
 import io.github.javaasasecondlanguage.flitter.flits.cache.TopElement;
 import io.github.javaasasecondlanguage.flitter.services.UserService;
 import io.github.javaasasecondlanguage.flitter.subscribers.SubscribeService;
@@ -58,10 +56,12 @@ public class FlitService {
 
 
     public List<FlitWithUserName> getUserFeed(String userToken) {
-        subscribeService.publisers(userToken);
-        //get publishers id
-        //get publishers flints
-        return null;
+        List<String> publishersName = subscribeService.publisersNames(userToken);
+        List<FlitWithUserName> list = new ArrayList<>();
+        for (String publisherName: publishersName){
+            list.addAll(flintsOfUser(publisherName));
+        }
+        return list;
     }
 
     public void clear() {

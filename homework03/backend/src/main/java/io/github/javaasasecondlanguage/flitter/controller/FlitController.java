@@ -44,7 +44,7 @@ public class FlitController {
     @GetMapping("/flit/list/feed/{usertoken}")
     ResponseEntity<?> feeds(@PathVariable("usertoken") String userToken) {
         if (userService.isUserTokenRegistered(userToken))
-            return new ResponseEntity<>(flitService.getUserFeed(userToken), HttpStatus.OK);
+            return new ResponseEntity<>(new Result(flitService.getUserFeed(userToken), null), HttpStatus.OK);
         else
             return new ResponseEntity<>(new Result(null, "User not found"), HttpStatus.INTERNAL_SERVER_ERROR);
     }

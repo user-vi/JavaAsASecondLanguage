@@ -36,7 +36,7 @@ public class SubscribeService {
         }
     }
 
-    public List<String> publisers(String userToken) {
+    public List<String> publisersNames(String userToken) {
         List<String> publishersOfCurrentSubscriber = new ArrayList<>();
         for (Subscribe subscribe : subscribesList) {
             if (subscribe.getSubscribeToken().equals(userToken)) {

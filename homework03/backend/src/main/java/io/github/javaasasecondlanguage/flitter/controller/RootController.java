@@ -57,7 +57,7 @@ public class RootController {
     @GetMapping("/publishers/list/{userToken}")
     ResponseEntity<?> userTokenPublishersList(@PathVariable String userToken) {
         if (userService.isUserTokenRegistered(userToken)) {
-            return new ResponseEntity<>(new Result(subscribeService.publisers(userToken), null), HttpStatus.OK);
+            return new ResponseEntity<>(new Result(subscribeService.publisersNames(userToken), null), HttpStatus.OK);
         } else
             return new ResponseEntity<>(new Result(null,"User not found" ), HttpStatus.INTERNAL_SERVER_ERROR);
     }
