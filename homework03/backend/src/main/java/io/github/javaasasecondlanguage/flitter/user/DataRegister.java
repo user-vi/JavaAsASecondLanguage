@@ -3,15 +3,15 @@ package io.github.javaasasecondlanguage.flitter.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.javaasasecondlanguage.flitter.user.User;
 
-public class Data {
+public class DataRegister {
 
     @JsonProperty("data")
     private User user;
 
-    public Data() {
+    public DataRegister() {
     }
 
-    public Data(User user) {
+    public DataRegister(User user) {
         this.user = user;
     }
 

@@ -1,65 +1,28 @@
 package io.github.javaasasecondlanguage.flitter.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.javaasasecondlanguage.flitter.user.Data;
-import io.github.javaasasecondlanguage.flitter.user.User;
-import io.github.javaasasecondlanguage.flitter.user.UserName;
+import io.github.javaasasecondlanguage.flitter.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 @RestController
 public class SampleController {
-    private Map<String, User> users = new HashMap<>();
-    private Map<String, String> flits = new HashMap<>();
+
+    @Autowired
+    private UserService userService;
+
     private Map<String, String> subscribes = new HashMap<>();
 
-    @GetMapping("/greeting")
-    String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        System.out.println("Invoked greeting: " + name);
-        return "Hello " + name;
-    }
-
+//    @GetMapping("/greeting")
+//    String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+//        System.out.println("Invoked greeting: " + name);
+//        return "Hello " + name;
+//    }
 
     @DeleteMapping("/clear")
     void delete() {
-        users.clear();
-    }
-
-    @PostMapping("/user/register")
-    Data register(@RequestBody UserName userName) {
-        User user = new User(userName);
-        users.put(user.getUsername(), user);
-        return new Data(user);
-    }
-
-    @GetMapping("/user/list")
-    @JsonProperty("data")
-    Set<String> geListOfUsers() {
-        return users.keySet();
-    }
-
-    @PostMapping("/flit/add")
-    void addFlit(@RequestBody String userToken, String content) {
-        flits.put(userToken, content);
-    }
-
-    @GetMapping("/flit/discover")
-    Map<String, String> discoverFlit(@RequestBody String userToken, String content) {
-        Map<String, String> response =  new HashMap<>();
-        for(int i = 0; i < 10; i++) {
-            Integer temp = flits.size() - i;
-        }
-    }
-
-    @GetMapping("/flit/list/{username}")
-    String userFlitList(@PathVariable String username) {
-        return flits.get(username);
-    }
-
-    @GetMapping("/flit/list/feed/{usertoken}")
-    String userFlitListFeed(@PathVariable String usertoken) {
-        return flits.get(usertoken);
+        userService.clear();
     }
 
     @PostMapping("/subscribe")

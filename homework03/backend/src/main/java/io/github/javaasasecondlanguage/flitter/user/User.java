@@ -5,21 +5,23 @@ import java.util.Map;
 import java.util.UUID;
 
 public class User {
-
-    private UserName username;
     private String userToken;
+    private String username;
+
 
     public String getUsername() {
-        return username.getUserName();
+        return username;
     }
 
     public String getUserToken() {
         return userToken;
     }
 
-    public User(UserName username) {
-        this.username = username;
+    public User(String username) {
         this.userToken = UUID.randomUUID().toString();
+        this.username = username;
     }
+
+
 
 }
