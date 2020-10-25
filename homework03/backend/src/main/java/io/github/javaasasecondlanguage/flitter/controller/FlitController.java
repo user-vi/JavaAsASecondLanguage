@@ -37,8 +37,8 @@ public class FlitController {
             return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-//    @GetMapping("/flit/list/feed/{usertoken}")
-//    String userFlitListFeed(@PathVariable String usertoken) {
-//        return flitService.get(usertoken);
-//    }
+    @GetMapping("/flit/list/feed/{usertoken}")
+    String userFlitListFeed(@PathVariable String usertoken) {
+        return null;
+    }
 }

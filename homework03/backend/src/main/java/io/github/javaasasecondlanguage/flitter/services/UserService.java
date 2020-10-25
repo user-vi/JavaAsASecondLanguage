@@ -32,6 +32,12 @@ public class UserService {
         } else return false;
     }
 
+    public boolean isUserTokenRegistered(String userToken){
+        if (users.containsKey(userToken)) {
+            return true;
+        } else return false;
+    }
+
     public List<String> list() {
         return new ArrayList<>(users.values());
     }
