@@ -56,7 +56,7 @@ Queue that blocks caller thread if goes out of bounds. Useful for synchronizing 
 ---
 ## What if we just write concurrent program as single-threaded?
 **Many things will go wrong**
-> @see ru.atom.lecture10.billing
+> @see billing
 
 
 ---
@@ -85,7 +85,7 @@ Because in multithreaded systems **guarantees are weaker** than in single-thread
 Multithreaded systems **without proper synchronization** have some problems.
 
 ---
-## 1. Race condition
+## Race condition
 Race condition (состояние гони, гонка)
 program behaviour where the output is dependent on the
 sequence or timing of other uncontrollable events  
@@ -95,7 +95,7 @@ Behaviour of multithreaded program is (inter alia) dependent on **OS scheduling*
 **Uncontrollable races are almost always erroneous**  
 
 ---
-## 2. Data races
+## Data races
 **Data race** - when several processes communicate via **shared mutable state** and at least one is writing **without proper synchronization**  
  (Not the same as race conditions)
 
