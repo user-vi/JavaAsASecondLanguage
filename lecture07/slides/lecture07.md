@@ -23,7 +23,7 @@ Execute async task in configurable thread pool
 ---
 ## ConcurrentHashMap
 ```java
-Map<String, Stats> stats = new ConcurrentHashMap<>();
+new ConcurrentHashMap<>();
 ```
 Thread-safe map with full concurrency of retrievals and high expected concurrency for updates
 
@@ -33,8 +33,9 @@ Thread-safe map with full concurrency of retrievals and high expected concurrenc
 private volatile int latestPostId = 0;
 ```
 - Write to volatile variable is always seen from subsequent read
-- volatile 
-https://docs.oracle.com/javase/specs/jls/se7/html/jls-17.html
+- volatile reads and writes are never reordered
+- volatile reads and writes are always atomic
+https://docs.oracle.com/javase/specs/jls/se14/html/jls-17.html
 
 ---
 ## AtomicInteger
@@ -69,6 +70,9 @@ curl -XPOST localhost:8080/billing/addUser -d "user=sergey&money=100000"
 curl localhost:8080/billing/stat
 curl -XPOST localhost:8080/billing/sendMoney -d "from=sergey&to=sasha&money=1"
 ```
+
+---
+## Billing example
 Start server and emulate fast money transfer with **jmeter**. Then look at stat again:
 ```bash
 curl localhost:8080/billing/stat
@@ -80,7 +84,8 @@ curl localhost:8080/billing/stat
 Technically, the invariant was broken:
 > Total amount of money in system must be preserved during **sendMoney**
 
-Why we loose money?  
+---
+## Why we loose money?  
 Because in multithreaded systems **guarantees are weaker** than in single-threaded.  
 Multithreaded systems **without proper synchronization** have some problems.
 
