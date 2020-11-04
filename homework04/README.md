@@ -130,6 +130,7 @@ You must implement the following operators (and pass tests for them):
     - [FilterMapper](src/main/java/io/github/javaasasecondlanguage/homework04/ops/mappers/FilterMapper.java)
     - [LowerCaseMapper](src/main/java/io/github/javaasasecondlanguage/homework04/ops/mappers/LowerCaseMapper.java)
     - [RetainColumnsMapper](src/main/java/io/github/javaasasecondlanguage/homework04/ops/mappers/RetainColumnsMapper.java)
+    - [TokenizerMapper](src/main/java/io/github/javaasasecondlanguage/homework04/ops/mappers/TokenizerMapper.java)
 * Reducers
     - [FirstNReducer](src/main/java/io/github/javaasasecondlanguage/homework04/ops/reducers/FirstNReducer.java)
     - [SumReducer](src/main/java/io/github/javaasasecondlanguage/homework04/ops/reducers/SumReducer.java)
