@@ -87,6 +87,8 @@ Since graph is a non-linear data structure, it is difficult to create a convenie
 * Merge with another linear part, which is represented by another builder (by using `join`).
 * Split a new linear part, creating a new builder (by using `branch`).  
   
+  For the example of using builder see code in [WordCount](src/main/java/io/github/javaasasecondlanguage/homework04/graphs/WordCount.java).
+  
 ![GraphBuilder](pics/builder.png)
 
 ## Our project
