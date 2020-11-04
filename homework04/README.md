@@ -67,9 +67,9 @@ Each node has several input **gates**, which allows it to accept different strea
 
 Nodes can be divided into four types:
 * [MapperNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/MapperNode.java) skips terminal records. When a terminal record arrives, it is simply redirected to the next node without any processing.
-* [ReducerNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/ReducerNode.java) does not skip terminal records. It also groups nodes by specified keys.
-* [JoinerNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/JoinerNode.java) accepts inputs from two gates (0 and 1). 
-* [SorterNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/SorterNode.java)
+* [ReducerNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/ReducerNode.java) does not skip terminal records. It accepts **sorted** sequence of records and groups them by specified keys.
+* [SorterNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/SorterNode.java) does not uses operator. It accepts records and stores them inside itself until it receives a terminal record. Then it sorts all stored records and outputs them.
+* [JoinerNode](src/main/java/io/github/javaasasecondlanguage/homework04/nodes/JoinerNode.java) does not uses operator. It accepts inputs from two gates (0 and 1) and outputs joined rows. You will have to implement it.
    
   
 
@@ -142,11 +142,11 @@ You must implement the following operators (and pass tests for them):
 * **Task**: Count how much words each author has written
 * **Input**: stream of records like:
     ```json
-    {Id: 1, Author: "Caesar", Text: "Et tu, Brute"}
+    {"Id": 1, "Author": "Caesar", Text: "Et tu, Brute"}
     ```
 * **Output**: stream of records like:
     ```json
-    {Author: "Caesar", TotalWords: 420}
+    {"Author": "Caesar", "TotalWords": 420}
     ```
   Records should be sorted by Author column, ascending. 
 
