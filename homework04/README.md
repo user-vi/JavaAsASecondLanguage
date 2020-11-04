@@ -145,7 +145,7 @@ You must implement the following operators (and pass tests for them):
 * **Task**: Count how much words each author has written
 * **Input**: stream of records like:
     ```json
-    {"Id": 1, "Author": "Caesar", Text: "Et tu, Brute"}
+    {"Id": 1, "Author": "Caesar", "Text": "Et tu, Brute"}
     ```
 * **Output**: stream of records like:
     ```json
