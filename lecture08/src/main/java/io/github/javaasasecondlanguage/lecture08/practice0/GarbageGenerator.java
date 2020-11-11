@@ -1,4 +1,4 @@
-package io.github.javaasasecondlanguage.lecture08.practice1;
+package io.github.javaasasecondlanguage.lecture08.practice0;
 
 public class GarbageGenerator {
     static final int MEGABYTE_IN_BYTES = 1024 * 1024;

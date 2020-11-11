@@ -1,11 +1,36 @@
 ## Java As A Second Language
 ### Lecture 08
-### Garbage Collection
+### Synchronization, Code generation
 
 ---
 ## Agenda
+- synchronized
 - Practice 1 - Fixing Billing Service
 - Byte Buddy
+
+---
+## Synchronized
+Acquires lock on object  
+If 2 threads acquire **same** lock - threads synchronize (communicate). So one thread sees writes that are made under lock.
+
+---
+## Synchronize reads and writes
+If you only synchronize write - threads will not synchronize, the reading thread may not see the result of writing.
+
+---
+## Happens Before
+**synchronizes-with** and **happens-before** relations define what threads can see when use synchronization  
+https://docs.oracle.com/javase/specs/jls/se14/html/jls-17.html  
+<img src="img/JMM_happens_before.jpg" alt="monitor" style="width: 600px;"/>  
+  
+Best described here  
+https://shipilev.net/blog/2014/jmm-pragmatics/
+
+---
+## Happens before also works for volatile
+
+---
+# Practice 1. Fixing billing service
 
 ---
 ## What if we just write concurrent program as single-threaded?
@@ -99,5 +124,6 @@ https://github.com/square/javapoet
 
 ---
 ## TIL
-- GC is fun
-- How to generate classes in runtime
+- synchronized requires lock for both read and writes
+- happens-before define what threads will see when using synchronization (volatile or locks)
+- Byte Buddy is fun

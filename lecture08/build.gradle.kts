@@ -44,12 +44,12 @@ fun enableJavaPreviewFeatures() {
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
-        jvmArgs("--enable-preview")
-        jvmArgs("-XX:+UnlockExperimentalVMOptions")
-        jvmArgs("-XX:+UseEpsilonGC");
+        //jvmArgs("--enable-preview")
+        //jvmArgs("-XX:+UnlockExperimentalVMOptions")
+        //jvmArgs("-XX:+UseEpsilonGC");
     }
 }
 
 application {
-    mainClass.set("io.github.javaasasecondlanguage.lecture07.practice1.GarbageGenerator")
+    mainClass.set("io.github.javaasasecondlanguage.lecture08.practice1.GarbageGenerator")
 }

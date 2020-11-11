@@ -1,4 +1,4 @@
-package io.github.javaasasecondlanguage.lecture08.practice1;
+package io.github.javaasasecondlanguage.lecture08.practice0;
 
 import org.junit.jupiter.api.Test;
 
