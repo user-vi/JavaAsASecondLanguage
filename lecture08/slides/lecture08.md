@@ -18,10 +18,13 @@ If 2 threads acquire **same** lock - threads synchronize (communicate). So one t
 If you only synchronize write - threads will not synchronize, the reading thread may not see the result of writing.
 
 ---
-## Happens Before
-**synchronizes-with** and **happens-before** relations define what threads can see when use synchronization  
+## Happens before
 https://docs.oracle.com/javase/specs/jls/se14/html/jls-17.html  
-<img src="img/JMM_happens_before.jpg" alt="monitor" style="width: 600px;"/>  
+<img src="img/JMM_happens_before.jpg" alt="monitor" style="width: 600px;"/> 
+
+---
+## Happens Before
+**synchronizes-with** and **happens-before** relations define what threads can see when use synchronization   
   
 Best described here  
 https://shipilev.net/blog/2014/jmm-pragmatics/
@@ -82,6 +85,8 @@ Behaviour of multithreaded program is (inter alia) dependent on **OS scheduling*
 **Data race** - when several processes communicate via **shared mutable state** and at least one is writing **without proper synchronization**  
  (Not the same as race conditions)
 
+---
+## Fix it!
 
 ---
 ## What if
