@@ -5,6 +5,7 @@
 ---
 ## Agenda
 - Practice 1 - Fixing Billing Service
+- Byte Buddy
 
 ---
 ## What if we just write concurrent program as single-threaded?
@@ -56,10 +57,47 @@ Behaviour of multithreaded program is (inter alia) dependent on **OS scheduling*
 **Data race** - when several processes communicate via **shared mutable state** and at least one is writing **without proper synchronization**  
  (Not the same as race conditions)
 
+
+---
+## What if
+We're too badass to write code like
+
+```java
+class Foo {
+    int bar;    
+    void baz() {...}        
+}
+```
+
+---
+## Dynamic code generation
+Wait WAT?
+
+
+---
+## ClassLoader
+<img class="plain" data-src="https://static.javatpoint.com/core/images/classloader-in-java.png"/>
+
+
+^^^
+## ClassLoader
+<img class="plain" data-src="https://static.javatpoint.com/core/images/classloader-in-java3.png"/>
+
+
+---
+## Byte Buddy
+<img class="plain" data-src="https://bytebuddy.net/images/logo-bg.png"/>
+
+
+^^^
+## Byte Buddy
+We're going to try Byte Buddy to generate classes in runtime
+https://bytebuddy.net/#/
+
+Alternative:
+https://github.com/square/javapoet
+
 ---
 ## TIL
-- volatile
-- ConcurrentHashMap
-- BlockingQueue
-- Atomic
-- If you write concurrent programs like single-threaded you can get into trouble
+- GC is fun
+- How to generate classes in runtime
