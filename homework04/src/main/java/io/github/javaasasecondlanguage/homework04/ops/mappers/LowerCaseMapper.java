@@ -8,13 +8,17 @@ import io.github.javaasasecondlanguage.homework04.ops.Mapper;
  * Shifts selected column to lowercase.
  */
 public class LowerCaseMapper implements Mapper {
+    String columnName;
 
     public LowerCaseMapper(String column) {
-        throw new IllegalStateException("You must implement this");
+        this.columnName = column;
     }
 
     @Override
     public void apply(Record inputRecord, Collector collector) {
-        throw new IllegalStateException("You must implement this");
+        Record copy = inputRecord.copy();
+        copy.set(columnName, ((String) inputRecord.get(columnName)).toLowerCase());
+
+        collector.collect(copy);
     }
 }
