@@ -22,13 +22,7 @@ public class IdentityMapperTest {
 
     private static final List<Record> inputRecords = convertToRecords(
             new String[]{"Id", "Name", "Surname"},
-            new Object[][]{
-                    {1, "Lion", "El'Johnson"},
-                    {5, "Jaghatai", "Khan"},
-                    {3, "Fulgrim", "Phoenician"},
-                    {13, "Roboute", "Guilliman"},
-                    {4, "Perturabo", "The Breaker"},
-                    {6, "Leman", "Russ"},
+            new Object[][]{{1, "Lion", "El'Johnson"}, {5, "Jaghatai", "Khan"}, {3, "Fulgrim", "Phoenician"}, {13, "Roboute", "Guilliman"}, {4, "Perturabo", "The Breaker"}, {6, "Leman", "Russ"},
             }
     );
 }
