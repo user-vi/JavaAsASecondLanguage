@@ -4,24 +4,34 @@ import io.github.javaasasecondlanguage.homework04.Collector;
 import io.github.javaasasecondlanguage.homework04.Record;
 import io.github.javaasasecondlanguage.homework04.ops.Reducer;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
  * Returns at most maxAmount records per group.
  */
 public class FirstNReducer implements Reducer {
+    private Integer maxAmount;
+    private ArrayList<Record> groupRecord;
+
 
     public FirstNReducer(int maxAmount) {
-        throw new IllegalStateException("You must implement this");
+        this.maxAmount = maxAmount;
+        groupRecord = new ArrayList<Record>(maxAmount);
     }
 
     @Override
     public void apply(Record inputRecord, Collector collector, Map<String, Object> groupByEntries) {
-        throw new IllegalStateException("You must implement this");
+        Record copy = inputRecord.copy();
+        if (groupRecord.size() < maxAmount) {
+            groupRecord.add(copy);
+        }
     }
+
 
     @Override
     public void signalGroupWasFinished(Collector collector, Map<String, Object> groupByEntries) {
-        throw new IllegalStateException("You must implement this");
+        groupRecord.stream().forEach(rec -> collector.collect(rec));
+        groupRecord.clear();
     }
 }
