@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Counts records in each group and returns a single record with a count.
- *
+ * <p>
  * Note: it is already implemented, use it as reducer example.
  */
 public class CountReducer implements Reducer {
