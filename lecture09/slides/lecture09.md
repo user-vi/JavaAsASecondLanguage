@@ -80,6 +80,10 @@ Configure heap size
 -Xms1024m -Xmx1024m  
 
 ---
+## Let's try to understand what GC does
+@See practice1
+
+---
 ## Is GC a silver bullet?
 GC power comes at cost of **performance**:
 1. GC is one or more threads working in background
