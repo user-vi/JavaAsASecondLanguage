@@ -80,6 +80,21 @@ Configure heap size
 -Xms1024m -Xmx1024m  
 
 ---
+## Is GC a silver bullet?
+GC power comes at cost of **performance**:
+1. GC is one or more threads working in background
+2. All gc implementations in Hotspot are **stop the world** (sometimes during GC work all application threads stop running until gc done)
+
+---
+## Stop the world
+All GCs in HotSpot are **Stop-the-world**
+i.e. there are moments when all the application threads are stopped and GC is working.  
+Different GCs implement different strategies to reduce pauses. Some even give guarantees of maximum pause time.  
+There is an attempt to implement ‘ultra-low pause’ GC  
+http://openjdk.java.net/projects/shenandoah/ (not production-ready)  
+There are JVM implementations where GC is pauseless: https://www.azul.com/products/zing/ (proprietary)  
+
+---
 ## Fun read
 https://shipilev.net/jvm/diy-gc/
 
