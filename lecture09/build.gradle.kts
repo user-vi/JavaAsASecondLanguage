@@ -22,6 +22,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.0-rc1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.3.1")
+    testImplementation("org.mockito:mockito-core:3.6.28")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.3.1")
     // jol
     implementation("org.openjdk.jol:jol-core:0.14")

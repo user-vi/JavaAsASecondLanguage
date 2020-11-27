@@ -81,21 +81,25 @@ public class ObjectLayout {
      * @throws Exception
      */
     public static void internals() throws Exception {
-        System.out.println("========== Initial layout ==========");
+        System.out.println("========== Layout of Object instance ==========");
+        Object object = new Object();
+        System.out.println(ClassLayout.parseInstance(object).toPrintable());
+
+        System.out.println("========== Initial layout of RegularClass instance ==========");
         RegularClass instance = new RegularClass();
         System.out.println(ClassLayout.parseInstance(instance).toPrintable());
 
         System.out.println("========== Identity hashcode - instantiated lazily ==========");
         System.identityHashCode(instance);
         System.out.println(ClassLayout.parseInstance(instance).toPrintable());
-        for(int i=0;i<1000000;i++){
+        for(int i=0;i<10000000;i++){
             new Object();
         }
 
         System.out.println("========== After several GCs - keep tracking of number of survivals ==========");
         System.out.println(ClassLayout.parseInstance(instance).toPrintable());
 
-        System.out.println("========== After locking on objec - the layout changes t========== ");
+        System.out.println("========== After locking on object - the layout changes t========== ");
         synchronized (instance){
             System.out.println(ClassLayout.parseInstance(instance).toPrintable());
         }
