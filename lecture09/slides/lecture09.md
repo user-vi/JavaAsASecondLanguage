@@ -11,7 +11,9 @@
 ---
 ## Object creation
 **new** keyword is the moment of allocation
-
+```java
+new Object();//new object will be created here
+```
 ---
 ## Heap structure
 Global structure of java process is defined in Java Virtual Machine Specification (JVMS)
@@ -20,30 +22,34 @@ https://docs.oracle.com/javase/specs/jvms/se14/html/jvms-2.html#jvms-2.5
 
 ---
 ## Object layout
-
+Use JOL to learn about object layout
+@see practice2
 Compressed OOPS - only 4 bytes for references for small heaps.
 
-Useful references  
+Fun read  
 https://shipilev.net/jvm/objects-inside-out/  
 https://shipilev.net/jvm/anatomy-quarks/23-compressed-references/
 ---
 ## Object removal
+- Object is removed when there are no hard references pointing at it
+- Or any time later...
 - This is controlled by GC
 - At the moment of GC Object.finalize() method is invoked
-- you can not control that directly
+- you can not control GC directly from Runtime
+- even with Runtime.gc() - it's only an advice
 
 **Never rely on Object.finalize() method**
 
 ---
 ## Basics of GC
-Heap is automatically managed by Garbage Collector (GC).  
-The structure of heap depend on chosen GC implementation.  
-**Hotspot** provide several implementations.
+Heap is automatically managed by Garbage Collector  
+The structure of heap depend on chosen GC implementation  
+**Hotspot** provide several implementations  
 
 ---
 # GC Q&A
 Q: Why we need Garbage Collector  
-A: To remove garbage, obviously  
+A: To allocate, to remove, to defragment heap  
 Q: What is garbage?  
 A: Objects that are no longer referenced  
 Q: Does cyclic references stall objects in heap forever  
@@ -51,17 +57,18 @@ A: No. Object is garbage if it can not be reached from GC Roots
 Q: What are GC Roots? A: ... (proceed reading)  
 
 ---
+## GC Roots
+<img src="img/gcroots.jpg" alt="gcroots" style="width: 700px;"/>
+
+---
 ## GC is configurable
 There are several implementations of GC in Hotspot. Each of them is configurable via **JVM parameters**.
 <img src="img/gcs.png" alt="monitor" style="width: 700px;"/>  
 
 ---
-## GC configuration
+## GC configuration with jvm parameters
 See simple logs for GC  
--verbose:gc  
-
-Get more logs  
--XX:+PrintGCDetails  
+-verbose:gc   
 
 Us this flag to get heap dump when OOM happens for further investigation  
 -XX:+HeapDumpOnOutOfMemoryError  
@@ -71,6 +78,10 @@ Configure used GC (g1 is default in most cases)
 
 Configure heap size  
 -Xms1024m -Xmx1024m  
+
+---
+## Fun read
+https://shipilev.net/jvm/diy-gc/
 
 ---
 ## TIL
