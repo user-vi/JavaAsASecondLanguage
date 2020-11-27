@@ -22,7 +22,7 @@ https://docs.oracle.com/javase/specs/jvms/se14/html/jvms-2.html#jvms-2.5
 
 ---
 ## Object layout
-Use JOL to learn about object layout
+Use JOL to learn about object layout  
 @see practice2
 Compressed OOPS - only 4 bytes for references for small heaps.
 
@@ -70,7 +70,7 @@ There are several implementations of GC in Hotspot. Each of them is configurable
 See simple logs for GC  
 -verbose:gc   
 
-Us this flag to get heap dump when OOM happens for further investigation  
+Us this flag to get heap dump when OOM happens 
 -XX:+HeapDumpOnOutOfMemoryError  
 
 Configure used GC (g1 is default in most cases)    
@@ -94,9 +94,20 @@ GC power comes at cost of **performance**:
 All GCs in HotSpot are **Stop-the-world**
 i.e. there are moments when all the application threads are stopped and GC is working.  
 Different GCs implement different strategies to reduce pauses. Some even give guarantees of maximum pause time.  
+
+---
+## Is pauseless GC possible
 There is an attempt to implement ‘ultra-low pause’ GC  
 http://openjdk.java.net/projects/shenandoah/ (not production-ready)  
 There are JVM implementations where GC is pauseless: https://www.azul.com/products/zing/ (proprietary)  
+
+---
+## How you configure GC
+You need to understand your scenario
+- How big is the heap
+- do you need to have guaranteed latency?
+- Latency, throughput, heap size - choose 2
+- Check default first
 
 ---
 ## Fun read
@@ -108,4 +119,5 @@ https://shipilev.net/jvm/diy-gc/
 - GC simplifies memory management for you
 - you can not control gc directly
 - you can choose GC and configure it
+- GC is made with the cost of performance, if you do it right, this cost is negligible
 - You can understand how object is allocated in memory using JOL tool
