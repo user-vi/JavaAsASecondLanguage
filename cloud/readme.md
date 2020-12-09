@@ -8,7 +8,15 @@ Run it and check
 curl localhost:8080/status
 ```
 
-## 2. Make Dockerfile for you application
+## 2. Make Dockerfile for your application
+```
+FROM adoptopenjdk/openjdk14
+EXPOSE 8080
+
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} cloud.jar
+ENTRYPOINT ["java","-jar","/cloud.jar"]
+```
 
 ## 3. Build Docker image and push to project’s image repository
 ```
