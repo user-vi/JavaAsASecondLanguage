@@ -1,4 +1,4 @@
-FROM x86_64-alpine-jdk-14.0.2_12-slim
+FROM adoptopenjdk/openjdk14
 EXPOSE 8080
 
 ARG JAR_FILE=build/libs/*.jar
