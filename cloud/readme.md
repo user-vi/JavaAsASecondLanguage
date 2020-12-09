@@ -2,7 +2,11 @@
 It's easier than you might think!
 
 ## 1. Create your service and push to GitHub repository
-:) 
+We will use this service as an example  
+Run it and check
+```
+curl localhost:8080/status
+```
 
 ## 2. Make Dockerfile for you application
 
